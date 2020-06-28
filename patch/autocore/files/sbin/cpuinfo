@@ -2,7 +2,7 @@
 
 info()
 {
-	MHz=`grep 'MHz' /proc/cpuinfo | cut -c11- |sed -n '1p'`
+	MHz=`echo "$(cat /sys/devices/system/cpu/cpu[04]/cpufreq/cpuinfo_cur_freq)/1000" | bc`
 	#获取CPU工作频率
 
 	sensors >/dev/null
@@ -12,7 +12,7 @@ info()
 		#获取CPU核心1温度
 
 	else
-		a=""
+		a=`echo "scale=2; $(cat /sys/class/thermal/thermal_zone0/temp)/1000" | bc`°
 	fi
 }
 

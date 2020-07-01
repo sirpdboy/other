@@ -3,15 +3,11 @@
 # Author: sirpdboy
 # https://github.com/sirpdboy/OnkeyOpenwrt
 #!/bin/bash
-red='\e[91m'
-green='\e[92m'
-yellow='\e[93m'
 echo -e "--------------------------------------------"
-echo -e "---------------更新必备插件库---------------"
+echo -e "----------------更新必备插件库----------------"
 echo -e "--------------------------------------------"
 git clone https://github.com/siropboy/mypackages package/mypackages
 git clone https://github.com/siropboy/mysmall package/mysmall
-#优化feeds luci
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-rosy
 rm -rf ./package/lean/luci-theme-opentomcat
@@ -28,9 +24,8 @@ sed -i '/filter_aaaa/d' package/network/services/dnsmasq/files/dhcp.conf
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d-%H%M%S)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
 wget -P package/lean/autocore/files  https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm
 wget -P package/lean/autocore/files https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/sbin/cpuinfo
-##获取额外package
 echo -e "--------------------------------------------------"
-echo -e "---------------同步更新最新额外插件---------------"
+echo -e "----------------同步更新最新额外插件----------------"
 echo -e "--------------------------------------------------"
 rm -rf ./package/new
 ##beardropper
@@ -62,6 +57,5 @@ sed -i 's/), 5)/), 48)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
 ##luci-app-vssr
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/ package/new/luci-app-vssr
-#授予权限
 chmod -R 755 ./
 exit 0

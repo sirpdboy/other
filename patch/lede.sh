@@ -4,7 +4,7 @@
 # https://github.com/sirpdboy/OnkeyOpenwrt
 #!/bin/bash
 echo -e "--------------------------------------------"
-echo -e "----------------更新必备插件库----------------"
+echo -e "---------------更新必备插件库---------------"
 echo -e "--------------------------------------------"
 git clone https://github.com/siropboy/mypackages package/mypackages
 git clone https://github.com/siropboy/mysmall package/mysmall
@@ -25,7 +25,7 @@ sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d-%H%M%S)-$(VERSION_DIST_
 wget -P package/lean/autocore/files  https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm
 wget -P package/lean/autocore/files https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/sbin/cpuinfo
 echo -e "--------------------------------------------------"
-echo -e "----------------同步更新最新额外插件----------------"
+echo -e "---------------同步更新最新额外插件---------------"
 echo -e "--------------------------------------------------"
 rm -rf ./package/new
 ##beardropper
@@ -40,7 +40,7 @@ svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/l
 ##SeverChan
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 ##SmartDNS
-svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns 
+svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 ##上网APP过滤
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
@@ -57,5 +57,6 @@ sed -i 's/), 5)/), 48)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
 ##luci-app-vssr
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/ package/new/luci-app-vssr
+#授予权限
 chmod -R 755 ./
 exit 0

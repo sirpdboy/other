@@ -60,6 +60,3 @@ svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-passwall luci-
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/ luci-app-vssr
 # 授予权限
 popd
-chmod -R 755 ./
-
-exit 0

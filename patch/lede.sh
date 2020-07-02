@@ -67,3 +67,5 @@ svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-passwall packa
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/ package/new/luci-app-vssr
 #授予权限
 chmod -R 755 ./
+
+exit 0

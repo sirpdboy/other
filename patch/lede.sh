@@ -28,7 +28,7 @@ sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d-%H%M%S)-$(VERSION_DIST_
 wget -P package/lean/autocore/files  https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm
 wget -P package/lean/autocore/files https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/sbin/cpuinfo
 # update package
-pushd  package/new
+cd   package/new
 ## beardropper
 git clone https://github.com/NateLol/luci-app-beardropper.git
 sed -i 's/"luci.fs"/"luci.sys".net/g' luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
@@ -58,5 +58,4 @@ sed -i 's/), 5)/), 48)/g' luci-app-clash/luasrc/controller/clash.lua
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-passwall luci-app-passwall
 ## luci-app-vssr
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/ luci-app-vssr
-# 授予权限
-popd
+chmod -R 755 ./

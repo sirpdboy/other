@@ -27,39 +27,39 @@ sed -i '/filter_aaaa/d' package/network/services/dnsmasq/files/dhcp.conf
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d-%H%M%S)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
 wget -P package/lean/autocore/files  https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm
 wget -P package/lean/autocore/files https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/sbin/cpuinfo
-#update package
-cd package/new
-##beardropper
+# update package
+pushd  package/new
+## beardropper
 git clone https://github.com/NateLol/luci-app-beardropper.git
 sed -i 's/"luci.fs"/"luci.sys".net/g' luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
 sed -i '/firewall/d' luci-app-beardropper/root/etc/uci-defaults/luci-beardropper
 mv luci-app-beardropper/po/zh_Hans   luci-app-beardropper/po/zh-cn
-##SSRP
+## SSRP
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus luci-app-ssr-plus
-##simple-obfs
-#git clone -b master --single-branch https://github.com/aa65535/openwrt-simple-obfs package/new/simple-obfs
-##SeverChan
+## simple-obfs
+# git clone -b master --single-branch https://github.com/aa65535/openwrt-simple-obfs package/new/simple-obfs
+## SeverChan
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan.git
-##SmartDNS
+## SmartDNS
 svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdnssmartdns
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns luci-app-smartdns
-##上网APP过滤
+## 上网APP过滤
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter.git
-##AdGuardHome
+## AdGuardHome
 svn co https://github.com/kenzok8/openwrt-packages/trunk/AdGuardHome AdGuardHome
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome luci-app-adguardhome
-##OpenClash
+## OpenClash
 svn co https://github.com/vernesong/OpenClash/branches/master/luci-app-openclash luci-app-openclash
-##clash
+## clash
 git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash.git luci-app-clash
-#svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-clash package/new/luci-app-clash
+# svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-clash package/new/luci-app-clash
 sed -i 's/), 5)/), 48)/g' luci-app-clash/luasrc/controller/clash.lua
-##passwall
+## passwall
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-passwall luci-app-passwall
-##luci-app-vssr
+## luci-app-vssr
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/ luci-app-vssr
-#授予权限
-cd ../../
+# 授予权限
+popd
 chmod -R 755 ./
 
 exit 0

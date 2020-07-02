@@ -3,7 +3,7 @@
 # Author: sirpdboy
 # https://github.com/sirpdboy/OnkeyOpenwrt
 #!/bin/bash
-cd lede
+# cd lede
 mv  ./package/lean/luci-theme-argon  ../bak
 mv  ./package/lean/luci-theme-rosy  ../bak
 mv  ./package/lean/luci-theme-opentomcat  ../bak

@@ -2,18 +2,18 @@
 pwd
 ls
 
-mv  ./package/lean/luci-theme-argon  ../bak
-mv .feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua  ../bak
-mv ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm  ../bak
-mv ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua   ../bak
-mv .feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua  ../bak
-mv ./package/lean/default-settings/files/zzz-default-settings   ../bak
-mv ./package/lean/autocore/files/index.htm  ../bak
-mv ./package/lean/autocore/files/cpuinfo  ../bak
+mv package/lean/luci-theme-argon  ../bak
+mv feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua  ../bak
+mv feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm  ../bak
+mv feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua   ../bak
+mv feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua  ../bak
+mv package/lean/default-settings/files/zzz-default-settings   ../bak
+mv package/lean/autocore/files/index.htm  ../bak
+mv package/lean/autocore/files/cpuinfo  ../bak
 sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 sed -i 's/带宽监控/监控/g' feeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
-wget -P  ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm
-wget -P  ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua
+wget -P  feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm
+wget -P  feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua
 wget -P package/lean/default-settings/files  https://raw.githubusercontent.com/siropboy/other/master/patch/default-settings/zzz-default-settings
 sed -i 's/实时流量监测/监测/g' package/lean/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po
 sed -i 's/网络存储/存储/g' package/lean/luci-app-vsftpd/po/zh-cn/vsftpd.po

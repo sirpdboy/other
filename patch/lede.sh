@@ -1,7 +1,8 @@
 #!/bin/bash
+pwd
+ls
+
 mv  ./package/lean/luci-theme-argon  ../bak
-mv  ./package/lean/luci-theme-rosy  ../bak
-mv  ./package/lean/luci-theme-opentomcat  ../bak
 mv .feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua  ../bak
 mv ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm  ../bak
 mv ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua   ../bak
@@ -22,7 +23,11 @@ sed -i '/filter_aaaa/d' package/network/services/dnsmasq/files/dhcp.conf
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d-%H%M%S)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
 wget -P package/lean/autocore/files  https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm
 wget -P package/lean/autocore/files https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/sbin/cpuinfo
+pwd
+ls
 cd package/new
+pwd
+ls
 ##beardropper
 git clone https://github.com/NateLol/luci-app-beardropper.git
 sed -i 's/"luci.fs"/"luci.sys".net/g' luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
@@ -42,5 +47,6 @@ sed -i 's/), 5)/), 48)/g' luci-app-clash/luasrc/controller/clash.lua
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-passwall
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/
 chmod -R 755 ./
-
+pwd
+ls
 exit 0

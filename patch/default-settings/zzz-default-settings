@@ -54,11 +54,6 @@ echo "DISTRIB_REVISION='S20.7.8 Sirpdboy'" >> /etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='OpenWrt '" >> /etc/openwrt_release
 
-uci set minidlna.config.enabled=0
-uci commit minidlna
-/etc/init.d/minidlna enable
-/etc/init.d/minidlna stop
-
 uci set vsftpd.@listen[0].enable4=0
 uci commit vsftpd
 /etc/init.d/vsftpd stop

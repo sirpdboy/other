@@ -61,7 +61,6 @@
 			userinfo    = user_info,
 			uptime     = sysinfo.uptime or 0,
 			localtime  = os.date(),
-			cpuusage   = luci.sys.exec("echo $( echo $(cat /proc/stat | grep \"^cpu \" | awk '{print $1+$2+$3+$4+$5+$6+$7 \" \" $1+$2+$3+$6+$7}') $(sleep 1 && cat /proc/stat | grep \"^cpu \" | awk '{print $1+$2+$3+$4+$5+$6+$7 \" \" $1+$2+$3+$6+$7}') | awk '{print (($4-$2)/($3-$1))*100}' )"),
 			loadavg    = sysinfo.load or { 0, 0, 0 },
 			memory     = meminfo,
                                                     memcached  = mem_cached,

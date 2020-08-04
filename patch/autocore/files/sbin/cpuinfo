@@ -1,25 +1,5 @@
 #!/bin/sh
 
-info()
-{
-	MHz=`echo "$(cat /sys/devices/system/cpu/cpu[04]/cpufreq/cpuinfo_cur_freq)/1000" | bc`
-	#获取CPU工作频率
-
-	sensors >/dev/null
-
-	if [ $? -eq 0 ];then
-		a=`sensors | grep 'Core 0' | cut -c10-24`
-		#获取CPU核心1温度
-
-	else
-		a=`echo "scale=2; $(cat /sys/class/thermal/thermal_zone0/temp)/1000" | bc`°
-	fi
-}
-
-out()
-{
-	info
-	echo "$MHz MHz $a "
-}
-
-out
+MHz=`grep 'MHz' /proc/cpuinfo | cut -c11- |sed -n '1p'`
+TEMP=`sensors 2>/dev/null | grep 'Core 0' | cut -c12-`
+echo "$MHz MHz $TEMP "

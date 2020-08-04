@@ -39,6 +39,13 @@ sed -i 's/http:/https:/g' /etc/opkg/distfeeds.conf
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 sed -i 's/eth0/eth0 eth2 eth3 eth4 eth5/g' /etc/config/network
 sed -i "s/# //g" /etc/opkg/distfeeds.conf
+
+uci set dhcp.lan.ra='server'
+uci set dhcp.lan.dhcpv6='server'
+uci set dhcp.lan.ra_management='1'
+uci set dhcp.lan.ra_default='1'
+uci commit dhcp
+
 sed -i '/openwrt_luci/ { s/snapshots/releases\/18.06.8/g; }'  /etc/opkg/distfeeds.conf
 sed -i '/REDIRECT --to-ports 53/d' /etc/firewall.user
 echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
@@ -57,18 +64,40 @@ echo "DISTRIB_DESCRIPTION='OpenWrt '" >> /etc/openwrt_release
 #uci commit vsftpd
 #/etc/init.d/vsftpd stop
 
-uci set dhcp.lan.ra='server'
-uci set dhcp.lan.dhcpv6='server'
-uci set dhcp.lan.ra_management='1'
-uci set dhcp.lan.ra_default='1'
-uci commit dhcp
-
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
 sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' /usr/lib/lua/luci/dispatcher.lua
 
+
+/etc/modules-boot.d && ln -s ../modules.d/18-phy-broadcom
 echo 'hsts=0' > /root/.wgetrc
+/etc/init.d/xl2tpd stop
+/etc/init.d/xl2tpd disable
+/etc/init.d/mysqld stop
+/etc/init.d/mysqld disable
+/etc/init.d/tvheadend stop
+/etc/init.d/tvheadend disable
+/etc/init.d/dnsforwarder stop
+/etc/init.d/dnsforwarder disable
+/etc/init.d/vmtoolsd stop
+/etc/init.d/vmtoolsd disable
+#/etc/init.d/watchcat stop
+#/etc/init.d/watchcat disable
+/etc/init.d/dnscrypt-proxy stop
+/etc/init.d/dnscrypt-proxy disable
+/etc/init.d/igmpproxy stop
+/etc/init.d/igmpproxy disable
+/etc/init.d/redsocks2 stop
+/etc/init.d/redsocks2 disable
+/etc/init.d/banip stop
+/etc/init.d/banip disable
+/etc/init.d/udpxy enable
+/etc/init.d/udpxy stop
+/etc/init.d/wsdd2 stop
+/etc/init.d/v2ray_server stop
+/etc/init.d/samba4 stop
+/etc/init.d/samba stop
 
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache

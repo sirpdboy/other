@@ -69,35 +69,6 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
 sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' /usr/lib/lua/luci/dispatcher.lua
 
-/etc/modules-boot.d && ln -s ../modules.d/18-phy-broadcom
-echo 'hsts=0' > /root/.wgetrc
-/etc/init.d/xl2tpd stop
-/etc/init.d/xl2tpd disable
-/etc/init.d/mysqld stop
-/etc/init.d/mysqld disable
-/etc/init.d/tvheadend stop
-/etc/init.d/tvheadend disable
-/etc/init.d/dnsforwarder stop
-/etc/init.d/dnsforwarder disable
-/etc/init.d/vmtoolsd stop
-/etc/init.d/vmtoolsd disable
-#/etc/init.d/watchcat stop
-#/etc/init.d/watchcat disable
-/etc/init.d/dnscrypt-proxy stop
-/etc/init.d/dnscrypt-proxy disable
-/etc/init.d/igmpproxy stop
-/etc/init.d/igmpproxy disable
-/etc/init.d/redsocks2 stop
-/etc/init.d/redsocks2 disable
-/etc/init.d/banip stop
-/etc/init.d/banip disable
-/etc/init.d/udpxy enable
-/etc/init.d/udpxy stop
-/etc/init.d/wsdd2 stop
-/etc/init.d/v2ray_server stop
-/etc/init.d/samba4 stop
-/etc/init.d/samba stop
-
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 

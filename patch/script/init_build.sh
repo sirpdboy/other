@@ -7,3 +7,8 @@ sudo -E apt-get -qq autoremove --purge
 sudo timedatectl set-timezone "$TZ"
 sudo -E apt-get -qq clean
 sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php
+sudo swapoff -a
+sudo rm -f /swapfile
+sudo rm -rf "/usr/local/share/boost"
+sudo rm -rf "$AGENT_TOOLSDIRECTORY"

@@ -1,9 +1,9 @@
-
+#!/bin/bash
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
-#!/bin/bash
+
 rm -rf ./package/new
 rm -rf ./feeds/packages/admin/netdata/
 rm -rf ./package/lean/luci-theme-argon

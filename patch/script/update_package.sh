@@ -1,9 +1,8 @@
-
+#!/bin/bash
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
-#!/bin/bash
 rm -rf ./package/new
 rm -rf ./feeds/packages/admin/netdata/
 rm -rf ./package/lean/luci-theme-argon
@@ -25,7 +24,7 @@ sed -i '/filter_aaaa/d' package/network/services/dnsmasq/files/dhcp.conf
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm > package/lean/autocore/files/index.htm
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
-svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata 
+svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
 git clone https://github.com/siropboy/mypackages package/mypackages
 git clone https://github.com/siropboy/mysmall package/mysmall
 git clone https://github.com/NateLol/luci-app-beardropper package/new/luci-app-beardropper
@@ -49,5 +48,4 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan package
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/new/luci-app-vssr
 svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ package/new/luci-app-jd-dailybonus
 git clone  https://github.com/lisaac/luci-lib-docker.git package/new/luci-lib-docker
-git clone  https://github.com/lisaac/luci-app-dockerman.git package/new/luci-app-dockerman  
-
+git clone  https://github.com/lisaac/luci-app-dockerman.git package/new/luci-app-dockerman

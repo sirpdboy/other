@@ -29,6 +29,16 @@ svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admi
 git clone https://github.com/siropboy/mypackages package/mypackages
 git clone https://github.com/siropboy/mysmall package/mysmall
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
+git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
+svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
+git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
+svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome package/new/AdGuardHome
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome package/new/luci-app-adguardhome
+git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/openclash
+#svn co https://github.com/vernesong/OpenClash/branches/master/luci-app-openclash  package/new/luci-app-openclash
+git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash package/new/luci-app-clash
+sed -i 's/), 5)/), 48)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go package/new/trojan-go
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus

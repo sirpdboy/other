@@ -7,6 +7,8 @@ rm -rf ./package/new
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/trojan
 rm -rf ./package/lean/luci-theme-opentomcat
+rm -rf ./package/lean/luci-app-netdata
+svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata 
 sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 sed -i 's/带宽监控/监控/g' feeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 

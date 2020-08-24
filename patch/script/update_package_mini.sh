@@ -29,8 +29,16 @@ svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admi
 svn co https://github.com/siropboy/other/trunk/patch/luci-app-netdata ./package/lean/luci-app-netdata
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-argon ./package/lean/luci-theme-argon
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/lean/luci-theme-opentomcat
-svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
-svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
+wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O ./package/new/master.zip
+unzip package/new/smartdns/master.zip -d ./package/new
+mv package/new/openwrt-smartdns-master ./package/new/smartdns
+rm ./package/new/master.zip
+wget https://github.com/pymumu/luci-app-smartdns/archive/lede.zip -O ./package/new/lede.zip
+unzip package/new/lede.zip -d package/new
+mv package/new/luci-app-smartdns-lede package/new/luci-app-smartdns
+rm ./package/new/lede.zip
+#svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
+#svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
 svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome package/new/AdGuardHome
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome package/new/luci-app-adguardhome

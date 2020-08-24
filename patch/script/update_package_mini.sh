@@ -28,6 +28,7 @@ echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/fil
 svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
 svn co https://github.com/siropboy/other/trunk/patch/luci-app-netdata ./package/lean/luci-app-netdata
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-argon ./package/lean/luci-theme-argon
+svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/lean/luci-theme-opentomcat
 svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
@@ -39,4 +40,4 @@ sed -i 's/), 5)/), 48)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go package/new/trojan-go
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan package/new/trojan
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan ./package/lean/trojan

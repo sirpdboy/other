@@ -6,6 +6,7 @@
 rm -rf ./package/new
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/trojan
+rm -rf ./package/lean/luci-lib-docker
 rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./package/lean/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata/
@@ -31,7 +32,7 @@ mv package/new/luci-app-beardropper/po/zh_Hans   package/new/luci-app-beardroppe
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
-#git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
+git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
 svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome package/new/AdGuardHome
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome package/new/luci-app-adguardhome
 git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/openclash

@@ -27,6 +27,7 @@ curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/autocor
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
 svn co https://github.com/siropboy/other/trunk/patch/luci-app-netdata ./package/lean/luci-app-netdata
+svn co https://github.com/siropboy/mypackages/trunk/luci-theme-argon ./package/lean/luci-theme-argon
 svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter

@@ -9,7 +9,7 @@ rm -rf ./package/lean/trojan
 rm -rf ./package/lean/luci-lib-docker
 rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./package/lean/luci-app-netdata
-rm -rf ./feeds/packages/admin/netdata/
+rm -rf ./feeds/packages/admin/netdata
 sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 sed -i 's/带宽监控/监控/g' feeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
@@ -25,6 +25,7 @@ sed -i '/filter_aaaa/d' package/network/services/dnsmasq/files/dhcp.conf
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm > package/lean/autocore/files/index.htm
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
+svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
 git clone https://github.com/NateLol/luci-app-beardropper package/new/luci-app-beardropper
 sed -i 's/"luci.fs"/"luci.sys".net/g' package/new/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
 sed -i '/firewall/d' package/new/luci-app-beardropper/root/etc/uci-defaults/luci-beardropper

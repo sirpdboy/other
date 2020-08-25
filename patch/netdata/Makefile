@@ -70,7 +70,7 @@ endef
 define Package/netdata/install
 	$(INSTALL_DIR) $(1)/etc/netdata/custom-plugins.d
 	$(CP) $(PKG_INSTALL_DIR)/etc/netdata $(1)/etc
-	$(CP) ./files/netdata.conf $(1)/etc/netdata
+	$(CP) ./files/*.conf $(1)/etc/netdata
 	touch $(1)/etc/netdata/.opt-out-from-anonymous-statistics
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/netdata $(1)/usr/lib
@@ -89,6 +89,7 @@ define Package/netdata/install
 	rm $(1)/usr/share/netdata/web/images/*.gif
 	rm $(1)/usr/share/netdata/web/images/*.ico
 	rm -rf $(1)/usr/share/netdata/web/old
+	$(CP) ./files/web $(1)/usr/share/netdata/web
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/netdata.init $(1)/etc/init.d/netdata
 endef

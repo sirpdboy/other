@@ -30,7 +30,7 @@ svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admi
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-argon ./package/lean/luci-theme-argon
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/lean/luci-theme-opentomcat
 wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O ./package/new/master.zip
-unzip package/new/smartdns/master.zip -d ./package/new
+unzip package/new/master.zip -d ./package/new
 mv package/new/openwrt-smartdns-master ./package/new/smartdns
 rm ./package/new/master.zip
 wget https://github.com/pymumu/luci-app-smartdns/archive/lede.zip -O ./package/new/lede.zip

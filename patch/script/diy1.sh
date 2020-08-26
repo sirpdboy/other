@@ -1,6 +1,6 @@
 #!/bin/bash
 sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
-sed -i '$a src-git mypackage https://github.com/siropboy/mypackage' feeds.conf.default
+sed -i '$a src-git mypackage https://github.com/siropboy/mypackages' feeds.conf.default
 rm -rf ./package/new
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/trojan

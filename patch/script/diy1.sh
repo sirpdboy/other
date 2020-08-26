@@ -9,6 +9,7 @@ rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./package/lean/luci-app-dockerman
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-argon ./package/lean/luci-theme-argon
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/lean/luci-theme-opentomcat
+svn co https://github.com/siropboy/mypackages/trunk/luci-app-control-mia ./package/new/luci-app-control-mia
 # git clone https://github.com/NateLol/luci-app-beardropper package/new/luci-app-beardropper
 # sed -i 's/"luci.fs"/"luci.sys".net/g' package/new/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
 # sed -i '/firewall/d' package/new/luci-app-beardropper/root/etc/uci-defaults/luci-beardropper
@@ -19,6 +20,8 @@ svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./pack
 # wget https://github.com/pymumu/luci-app-smartdns/archive/lede.zip -O ./package/new/lede.zip
 # unzip package/new/lede.zip -d package/new  && mv package/new/luci-app-smartdns-lede package/new/luci-app-smartdns
 #svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
+#svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
+
 #svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome package/new/AdGuardHome
@@ -38,3 +41,4 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan package
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/brook
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/lienol/luci-app-timecontrol package/new/luci-app-timecontrol

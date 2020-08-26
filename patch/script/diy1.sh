@@ -26,15 +26,15 @@ svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./pack
 # git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/openclash
 # git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash package/new/luci-app-clash
 # sed -i 's/), 5)/), 48)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
-sed -i 's/), 1)/), 48)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
-svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go package/new/trojan-go
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan package/new/trojan
+# sed -i 's/), 1)/), 48)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 # svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/new/luci-app-vssr
 # svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ package/new/luci-app-jd-dailybonus
 # git clone  https://github.com/lisaac/luci-lib-docker.git package/new/luci-lib-docker
 # git clone  https://github.com/lisaac/luci-app-dockerman.git package/new/luci-app-dockerman
-# svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/brook
-# svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
-# svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
+svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go package/new/trojan-go
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan package/new/trojan
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/brook
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping

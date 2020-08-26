@@ -41,4 +41,4 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan package
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/brook
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/lienol/luci-app-timecontrol package/new/luci-app-timecontrol
+svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-timecontrol package/new/luci-app-timecontrol

@@ -46,4 +46,3 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan ./packa
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/brook
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
-sed -i 's/\"services\"/\"control\"/g' /usr/lib/lua/luci/controller/mia.lua

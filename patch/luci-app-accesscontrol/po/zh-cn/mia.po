@@ -1,3 +1,6 @@
+msgid "Control"
+msgstr "管控"
+
 msgid "Internet Access Schedule Control"
 msgstr "上网时间控制"
 

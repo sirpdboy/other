@@ -58,6 +58,7 @@ chmod +x  ./feeds/diy/luci-app-control-timewol/root/etc/init.d/t*
 chmod +x  ./feeds/diy/luci-app-control-webrestriction/root/etc/init.d/w*
 chmod +x  ./feeds/diy/luci-app-control-weburl/root/etc/init.d/w*
 chmod +x  ./feeds/diy/luci-app-eqos/root/usr/sbin/e*
+chmod +x  ./feeds/diy/luci-app-eqos/root/etc/init.d/e*
 chmod +x  ./feeds/diy/luci-app-koolddns/root/etc/init.d/k*
 chmod +x  ./feeds/diy/luci-app-koolddns/root/usr/share/koolddns/a*
 chmod +x  ./feeds/diy/luci-app-koolddns/root/usr/share/koolddns/d*

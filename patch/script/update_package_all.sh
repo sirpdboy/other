@@ -49,3 +49,13 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan ./packa
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/brook
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
+chmod +x  ./feeds/diy/luci-app-cpulimit/root/etc/init.d/c*
+chmod +x  ./feeds/diy/luci-app-cpulimit/root/usr/bin/c*
+chmod +x  ./feeds/diy/luci-app-autopoweroff/root/etc/init.d/a*
+chmod +x  ./feeds/diy/luci-app-control-timewol/root/etc/init.d/t*
+chmod +x  ./feeds/diy/luci-app-control-webrestriction/root/etc/init.d/w*
+chmod +x  ./feeds/diy/luci-app-control-weburl/root/etc/init.d/w*
+chmod +x  ./feeds/diy/luci-app-eqos/root/usr/sbin/e*
+chmod +x  ./feeds/diy/luci-app-koolddns/root/etc/init.d/k*
+chmod +x  ./feeds/diy/luci-app-koolddns/usr/share/koolddns/a*
+chmod +x  ./feeds/diy/luci-app-koolddns/usr/share/koolddns/d*

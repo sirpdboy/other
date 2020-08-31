@@ -52,13 +52,14 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/etc/init.d/c*
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/usr/bin/c*
 chmod +x  ./feeds/diy/luci-app-autopoweroff/root/etc/init.d/a*
-chmod +x  ./feeds/diy/luci-app-control-mia/root/etc/init.d/t*
+chmod +x  ./feeds/diy/luci-app-control-mia/root/etc/init.d/m*
+chmod +x  ./feeds/diy/luci-app-control-mia/root/usr/share/rpcd/acl.d/l*
 chmod +x  ./feeds/diy/luci-app-control-timewol/root/etc/init.d/t*
 chmod +x  ./feeds/diy/luci-app-control-webrestriction/root/etc/init.d/w*
 chmod +x  ./feeds/diy/luci-app-control-weburl/root/etc/init.d/w*
 chmod +x  ./feeds/diy/luci-app-eqos/root/usr/sbin/e*
 chmod +x  ./feeds/diy/luci-app-koolddns/root/etc/init.d/k*
-chmod +x  ./feeds/diy/luci-app-koolddns/usr/share/koolddns/a*
-chmod +x  ./feeds/diy/luci-app-koolddns/usr/share/koolddns/d*
+chmod +x  ./feeds/diy/luci-app-koolddns/root/usr/share/koolddns/a*
+chmod +x  ./feeds/diy/luci-app-koolddns/root/usr/share/koolddns/d*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/etc/init.d/p*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/usr/share/rpcd/acl.d/l*

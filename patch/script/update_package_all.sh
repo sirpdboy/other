@@ -55,6 +55,7 @@ chmod +x  ./feeds/diy/luci-app-autopoweroff/root/etc/init.d/a*
 chmod +x  ./feeds/diy/luci-app-control-mia/root/etc/init.d/m*
 chmod +x  ./feeds/diy/luci-app-control-mia/root/usr/share/rpcd/acl.d/l*
 chmod +x  ./feeds/diy/luci-app-control-timewol/root/etc/init.d/t*
+chmod +x  ./feeds/diy/luci-app-control-timewol/root/usr/share/rpcd/acl.d/l*
 chmod +x  ./feeds/diy/luci-app-control-webrestriction/root/etc/init.d/w*
 chmod +x  ./feeds/diy/luci-app-control-weburl/root/etc/init.d/w*
 chmod +x  ./feeds/diy/luci-app-eqos/root/usr/sbin/e*

@@ -73,5 +73,6 @@ sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' /usr/lib/lua/luci/dispat
 echo 'hsts=0' > /root/.wgetrc
 
 rm -f /tmp/luci-*cache
+rm -r /tmp/luci-indexcache
 
 exit 0

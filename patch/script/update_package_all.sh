@@ -68,3 +68,5 @@ chmod +x  ./feeds/diy/luci-app-koolddns/root/usr/share/koolddns/a*
 chmod +x  ./feeds/diy/luci-app-koolddns/root/usr/share/koolddns/d*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/etc/init.d/p*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/usr/share/rpcd/acl.d/l*
+chmod +x  ./feeds/diy/luci-app-smartinfo/root/usr/lib/smartinfo/s*
+chmod +x  ./feeds/diy/luci-app-smartinfo/root/etc/init.d/s*

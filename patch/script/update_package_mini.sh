@@ -89,8 +89,3 @@ chmod +x  ./feeds/diy/dnscrypt-proxy-full/files/etc/init.d/d*
 chmod +x  ./feeds/diy/luci-app-docker/root/etc/uci-defaults/d*
 chmod +x  ./feeds/diy/luci-app-docker/root/etc/d*
 chmod +x  ./feeds/diy/luci-app-docker/root/etc/init.d/d*
-chmod +x  ./feeds/diy/luci-app-koolproxyR/k*
-chmod +x  ./feeds/diy/luci-app-koolproxyR/files/usr/sbin/a*
-chmod +x  ./feeds/diy/luci-app-koolproxyR/files/etc/init.d/k*
-chmod +x  ./feeds/diy/luci-app-koolproxyR/files/usr/share/koolproxy/k*
-chmod +x  ./feeds/diy/luci-app-koolproxyR/files/etc/uci-defaults/k*

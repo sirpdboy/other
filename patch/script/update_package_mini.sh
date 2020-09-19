@@ -52,6 +52,7 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/ssocks
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/naiveproxy package/naiveproxy
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/etc/init.d/c*
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/usr/bin/c*
 chmod +x  ./feeds/diy/luci-app-autopoweroff/root/etc/init.d/a*

@@ -76,12 +76,3 @@ chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/etc/init.d/p*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/usr/share/rpcd/acl.d/l*
 chmod +x  ./feeds/diy/luci-app-smartinfo/root/usr/lib/smartinfo/s*
 chmod +x  ./feeds/diy/luci-app-smartinfo/root/etc/init.d/s*
-chmod +x  ./package/lean/luci-theme-argon/root/usr/share/netdata/n*
-chmod +x  ./package/lean/luci-theme-argon/root/usr/share/netdatacn/n*
-chmod +x  ./feeds/diy/luci-app-smartinfo/root/usr/lib/smartinfo/s*
-chmod +x  ./feeds/diy/luci-app-smartinfo/root/etc/init.d/s*
-chmod +x  ./feeds/diy/luci-theme-argon/root/etc/uci-defaults/3*
-chmod +x  ./package/lean/luci-theme-argon/root/etc/uci-defaults/3*
-chmod +x  ./feeds/diy/luci-theme-btmod/root/etc/uci-defaults/l*
-chmod +x  ./feeds/diy/luci-theme-opentomcat/files/l*
-chmod +x  ./package/lean/luci-theme-opentomcat/files/l*

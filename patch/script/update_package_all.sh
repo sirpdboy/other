@@ -36,16 +36,16 @@ svn co https://github.com/siropboy/mypackages/trunk/luci-theme-argon ./package/l
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/lean/luci-theme-opentomcat
 svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ package/new/luci-app-jd-dailybonus
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
-svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
-svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
+# svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
+# svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
-svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome package/new/AdGuardHome
-svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome package/new/luci-app-adguardhome
+# svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome package/new/AdGuardHome
+# svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome package/new/luci-app-adguardhome
 git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/openclash
 git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash package/new/luci-app-clash
 sed -i 's/), 5)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 sed -i 's/), 1)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
-# svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/new/luci-app-vssr
+svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/new/luci-app-vssr
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go package/new/trojan-go
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
@@ -78,3 +78,8 @@ chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/etc/init.d/p*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/usr/share/rpcd/acl.d/l*
 chmod +x  ./feeds/diy/luci-app-smartinfo/root/usr/lib/smartinfo/s*
 chmod +x  ./feeds/diy/luci-app-smartinfo/root/etc/init.d/s*
+chmod +x  ./feeds/diy/luci-app-adguardhome/root/etc/init.d/A*
+chmod +x  ./feeds/diy/luci-app-adguardhome/root/etc/uci-defaults/4*
+chmod +x  ./feeds/diy/luci-app-adguardhome/root/usr/share/AdGuardHome/*.sh
+chmod +x  ./feeds/diy/luci-app-smartdns/root/etc/uci-defaults/5*
+chmod +x  ./feeds/diy/smartdns/tmp/*.sh

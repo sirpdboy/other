@@ -50,11 +50,12 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwa
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go package/new/trojan-go
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan ./package/lean/trojan
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/brook
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/new/brook
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/kcptun package/new/kcptun
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/new/chinadns-ng
 # svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/ssocks
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/naiveproxy package/naiveproxy
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/new/ssocks
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/naiveproxy package/new/naiveproxy
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/v2ray package/lean/v2ray
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/etc/init.d/c*
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/usr/bin/c*

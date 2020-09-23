@@ -6,6 +6,7 @@
 rm -rf ./package/new
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/trojan
+rm -rf ./package/lean/v2ray
 # rm -rf ./package/lean/luci-lib-docker
 rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./package/lean/luci-app-netdata
@@ -21,8 +22,8 @@ sed -i 's/Turbo ACC 网络加速/ACC网络加速/g' package/lean/luci-app-sfe/po
 sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g' package/lean/luci-app-unblockmusic/po/zh-cn/unblockmusic.po
 sed -i 's/家庭云//g' package/lean/luci-app-familycloud/luasrc/controller/familycloud.lua
 sed -i '/filter_aaaa/d' package/network/services/dnsmasq/files/dhcp.conf
-# sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' ./include/image.mk
-sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
+sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-ipv6-/g' ./include/image.mk
+#sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm > package/lean/autocore/files/index.htm
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/luasrc/controller/mia.lua > package/lean/luci-app-accesscontrol/luasrc/controller/mia.lua
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/po/zh-cn/mia.po > package/lean/luci-app-accesscontrol/po/zh-cn/mia.po
@@ -51,9 +52,10 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus pa
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan ./package/lean/trojan
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/brook
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/chinadns-ng
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
+# svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/ssocks
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/naiveproxy package/naiveproxy
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/v2ray package/lean/v2ray
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/etc/init.d/c*
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/usr/bin/c*
 chmod +x  ./feeds/diy/luci-app-autopoweroff/root/etc/init.d/a*

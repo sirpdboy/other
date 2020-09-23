@@ -44,16 +44,17 @@ sed -i 's/downloads.openwrt.org/openwrt.proxy.ustclug.org/g' /etc/opkg/distfeeds
 sed -i 's/http:/https:/g' /etc/opkg/distfeeds.conf
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 #sed -i 's/eth0/eth0 eth2 eth3 eth4 eth5/g' /etc/config/network
+
 sed -i "s/# //g" /etc/opkg/distfeeds.conf
 
 sed -i '/openwrt_luci/ { s/snapshots/releases\/18.06.8/g; }'  /etc/opkg/distfeeds.conf
 sed -i '/REDIRECT --to-ports 53/d' /etc/firewall.user
-echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
-echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
+echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 54" >> /etc/firewall.user
+echo "iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 54" >> /etc/firewall.user
 
 sed -i '/option disabled/d' /etc/config/wireless
 sed -i '/set wireless.radio${devidx}.disabled/d' /lib/wifi/mac80211.sh
-#wifi up
+wifi up
 
 sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release
 cat /etc/openwrt_release1 >> /etc/openwrt_release
@@ -70,7 +71,7 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' /usr/lib/lua/luci/dispatcher.lua
 echo 'hsts=0' > /root/.wgetrc
 
-rm -f /tmp/luci-*cache
-rm -r /tmp/luci-indexcache
+rm -rf /tmp/luci-modulecache/
+rm -f /tmp/luci-indexcache
 
 exit 0

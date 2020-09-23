@@ -21,9 +21,9 @@ sed -i 's/Turbo ACC 网络加速/ACC网络加速/g' package/lean/luci-app-sfe/po
 sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g' package/lean/luci-app-unblockmusic/po/zh-cn/unblockmusic.po
 sed -i 's/家庭云//g' package/lean/luci-app-familycloud/luasrc/controller/familycloud.lua
 sed -i '/filter_aaaa/d' package/network/services/dnsmasq/files/dhcp.conf
-# sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(shell date +%Y%m%d)-mini-/g' ./include/image.mk
-sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-mini-/g' ./include/image.mk
+# sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-mini-/g' ./include/image.mk
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-mini-$(VERSION_DIST_SANITIZED)/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-mini-/g' include/image.mk
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm > package/lean/autocore/files/index.htm
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/luasrc/controller/mia.lua > package/lean/luci-app-accesscontrol/luasrc/controller/mia.lua
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/po/zh-cn/mia.po > package/lean/luci-app-accesscontrol/po/zh-cn/mia.po
@@ -77,18 +77,3 @@ chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/etc/init.d/p*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/usr/share/rpcd/acl.d/l*
 chmod +x  ./feeds/diy/luci-app-smartinfo/root/usr/lib/smartinfo/s*
 chmod +x  ./feeds/diy/luci-app-smartinfo/root/etc/init.d/s*
-chmod +x  ./feeds/diy/luci-app-netdata/root/usr/share/netdata/n*
-chmod +x  ./feeds/diy/luci-app-netdata/root/usr/share/netdatacn/n*
-chmod +x  ./package/lean/luci-theme-argon/root/usr/share/netdata/n*
-chmod +x  ./package/lean/luci-theme-argon/root/usr/share/netdatacn/n*
-chmod +x  ./feeds/diy/luci-app-smartinfo/root/usr/lib/smartinfo/s*
-chmod +x  ./feeds/diy/luci-app-smartinfo/root/etc/init.d/s*
-chmod +x  ./feeds/diy/luci-theme-argon/root/etc/uci-defaults/3*
-chmod +x  ./package/lean/luci-theme-argon/root/etc/uci-defaults/3*
-chmod +x  ./feeds/diy/luci-theme-btmod/root/etc/uci-defaults/l*
-chmod +x  ./feeds/diy/luci-theme-opentomcat/files/l*
-chmod +x  ./package/lean/luci-theme-opentomcat/files/l*
-chmod +x  ./feeds/diy/dnscrypt-proxy-full/files/etc/init.d/d*
-chmod +x  ./feeds/diy/luci-app-docker/root/etc/uci-defaults/d*
-chmod +x  ./feeds/diy/luci-app-docker/root/etc/d*
-chmod +x  ./feeds/diy/luci-app-docker/root/etc/init.d/d*

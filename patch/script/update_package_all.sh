@@ -11,6 +11,7 @@ rm -rf ./package/lean/v2ray
 rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./package/lean/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata
+rm -rf ./package/lean/v2ray-plugin
 sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
@@ -58,6 +59,7 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng pa
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/new/ssocks
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/naiveproxy package/new/naiveproxy
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/v2ray package/lean/v2ray
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package/v2ray-plugin package/lean/v2ray-plugin
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/etc/init.d/c*
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/usr/bin/c*
 chmod +x  ./feeds/diy/luci-app-autopoweroff/root/etc/init.d/a*
@@ -84,4 +86,3 @@ chmod +x  ./feeds/diy/luci-app-adguardhome/root/etc/init.d/A*
 chmod +x  ./feeds/diy/luci-app-adguardhome/root/etc/uci-defaults/4*
 chmod +x  ./feeds/diy/luci-app-adguardhome/root/usr/share/AdGuardHome/*.sh
 chmod +x  ./feeds/diy/luci-app-smartdns/root/etc/uci-defaults/5*
-chmod +x  ./feeds/diy/smartdns/tmp/*.sh

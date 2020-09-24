@@ -36,6 +36,7 @@ svn co https://github.com/siropboy/mypackages/trunk/luci-theme-argon ./package/l
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/lean/luci-theme-opentomcat
 svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ package/new/luci-app-jd-dailybonus
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
+svn co https://github.com/siropboy/mypackages/trunk/smartdns package/new/smartdns
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter

@@ -57,7 +57,7 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/kcptun package
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/new/chinadns-ng
 # svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/tcping
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/new/ssocks
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/naiveproxy package/new/naiveproxy
+# svn co https://github.com/xiaorouji/openwrt-package/trunk/package/naiveproxy package/new/naiveproxy
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/v2ray package/lean/v2ray
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/v2ray-plugin package/lean/v2ray-plugin
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/etc/init.d/c*

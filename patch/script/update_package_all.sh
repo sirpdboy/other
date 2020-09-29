@@ -34,7 +34,6 @@ curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/https-d
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
 svn co https://github.com/siropboy/other/trunk/patch/luci-app-netdata ./package/lean/luci-app-netdata
-svn co https://github.com/siropboy/mypackages/trunk/luci-theme-argon ./package/lean/luci-theme-argon
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/lean/luci-theme-opentomcat
 svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ package/new/luci-app-jd-dailybonus
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan

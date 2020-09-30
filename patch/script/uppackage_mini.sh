@@ -25,18 +25,3 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/new/luci-app-v
 svn co https://github.com/siropboy/mypackages/trunk/lua-maxminddb package/new/lua-maxminddb
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package package/package
-chmod +x  package/new/luci-app-autopoweroff/root/etc/init.d/a*
-chmod +x  package/new/luci-app-control-webrestriction/root/etc/init.d/w*
-chmod +x  package/new/luci-app-control-webrestriction/root/etc/uci-defaults/l*
-chmod +x  package/new/luci-app-control-weburl/root/etc/init.d/w*
-chmod +x  package/new/luci-app-control-weburl/root/etc/uci-defaults/l*
-chmod +x  package/new/luci-app-eqos/root/usr/sbin/e*
-chmod +x  package/new/luci-app-eqos/root/etc/init.d/e*
-chmod +x  package/new/luci-app-koolddns/root/etc/init.d/k*
-chmod +x  package/new/luci-app-koolddns/root/usr/share/koolddns/a*
-chmod +x  package/new/luci-app-koolddns/root/usr/share/koolddns/d*
-chmod +x  package/new/luci-app-adguardhome/root/etc/init.d/A*
-chmod +x  package/new/luci-app-adguardhome/root/etc/uci-defaults/4*
-chmod +x  package/new/luci-app-adguardhome/root/usr/share/AdGuardHome/*.sh
-chmod +x  package/new/luci-app-smartdns/root/etc/uci-defaults/5*
-chmod -R 755 ./

@@ -3,7 +3,6 @@
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
-mkdir ./package/new
 rm -rf ./feeds/packages/admin/netdata
 rm -rf ./package/lean/luci-theme-opentomcat
 sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
@@ -25,4 +24,3 @@ curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-ap
 # curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/https-dns-proxy/files/https-dns-proxy.init > feeds/packages/net/https-dns-proxy/files/https-dns-proxy.init
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
-svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentopd package/luci-theme-opentopd

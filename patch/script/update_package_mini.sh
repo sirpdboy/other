@@ -3,17 +3,15 @@
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
-rm -rf ./package/new
+#rm -rf ./package/new
 rm -rf ./package/lean/luci-theme-argon
-rm -rf ./package/lean/trojan
-rm -rf ./package/lean/v2ray
+#rm -rf ./package/lean/trojan
+#rm -rf ./package/lean/v2ray
 # rm -rf ./package/lean/luci-lib-docker
-rm -rf ./package/lean/luci-theme-opentomcat
-rm -rf ./package/lean/luci-app-netdata
+#rm -rf ./package/lean/luci-theme-opentomcat
+#rm -rf ./package/lean/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata
-rm -rf ./package/lean/v2ray-plugin
-rm -rf ./package/lean/microsocks
-mkdir ./package/new
+rm -rf ./feeds/packages/net/smartdns
 sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
@@ -31,26 +29,26 @@ curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/autocor
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/luasrc/controller/mia.lua > package/lean/luci-app-accesscontrol/luasrc/controller/mia.lua
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/po/zh-cn/mia.po > package/lean/luci-app-accesscontrol/po/zh-cn/mia.po
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/luasrc/view/mia/mia_status.htm > package/lean/luci-app-accesscontrol/luasrc/view/mia/mia_status.htm
-curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/https-dns-proxy/files/https-dns-proxy.init > feeds/packages/net/https-dns-proxy/files/https-dns-proxy.init
+curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/dev-19.07/net/https-dns-proxy/files/https-dns-proxy.config > ./feeds/packages/net/https-dns-proxy/files/https-dns-proxy.config
+curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/dev-19.07/net/https-dns-proxy/files/https-dns-proxy.init > ./feeds/packages/net/https-dns-proxy/files/https-dns-proxy.init
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
-svn co https://github.com/siropboy/other/trunk/patch/luci-app-netdata ./package/lean/luci-app-netdata
-svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/lean/luci-theme-opentomcat
 #svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ package/new/luci-app-jd-dailybonus
 #git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 svn co https://github.com/siropboy/mypackages/trunk/smartdns package/new/smartdns
+svn co https://github.com/siropboy/mypackages/trunk/adguardhome package/new/adguardhome
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome package/new/AdGuardHome
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome package/new/luci-app-adguardhome
 git clone -b master --single-branch https://github.com/vernesong/OpenClash/luci-app-openclash package/new/luci-app-openclash
-git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash package/new/luci-app-clash
-sed -i 's/), 5)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
-sed -i 's/), 1)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
+#git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash package/new/luci-app-clash
+#sed -i 's/), 5)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
+#sed -i 's/), 1)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/new/luci-app-vssr
-svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package package/package
+svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/luci-app-passwall
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package package/lienol
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/etc/init.d/c*
 chmod +x  ./feeds/diy/luci-app-cpulimit/root/usr/bin/c*
 chmod +x  ./feeds/diy/luci-app-autopoweroff/root/etc/init.d/a*
@@ -71,8 +69,6 @@ chmod +x  ./feeds/diy/luci-app-koolddns/root/usr/share/koolddns/a*
 chmod +x  ./feeds/diy/luci-app-koolddns/root/usr/share/koolddns/d*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/etc/init.d/p*
 chmod +x  ./feeds/diy/luci-app-pptp-vpnserver-manyusers/root/usr/share/rpcd/acl.d/l*
-# chmod +x  ./feeds/diy/luci-app-smartinfo/root/usr/lib/smartinfo/s*
-# chmod +x  ./feeds/diy/luci-app-smartinfo/root/etc/init.d/s*
 chmod +x  ./feeds/diy/luci-app-adguardhome/root/etc/init.d/A*
 chmod +x  ./feeds/diy/luci-app-adguardhome/root/etc/uci-defaults/4*
 chmod +x  ./feeds/diy/luci-app-adguardhome/root/usr/share/AdGuardHome/*.sh

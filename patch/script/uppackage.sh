@@ -29,23 +29,4 @@ svn co https://github.com/siropboy/mypackages/trunk/lua-maxminddb package/new/lu
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package package/package
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
-chmod +x  package/new/luci-app-cpulimit/root/etc/init.d/c*
-chmod +x  package/new/luci-app-cpulimit/root/usr/bin/c*
-chmod +x  package/new/luci-app-autopoweroff/root/etc/init.d/a*
-chmod +x  package/new/luci-app-control-webrestriction/root/etc/init.d/w*
-chmod +x  package/new/luci-app-control-webrestriction/root/etc/uci-defaults/l*
-chmod +x  package/new/luci-app-control-weburl/root/etc/init.d/w*
-chmod +x  package/new/luci-app-control-weburl/root/etc/uci-defaults/l*
-chmod +x  package/new/luci-app-eqos/root/usr/sbin/e*
-chmod +x  package/new/luci-app-eqos/root/etc/init.d/e*
-chmod +x  package/new/luci-app-koolddns/root/etc/init.d/k*
-chmod +x  package/new/luci-app-koolddns/root/usr/share/koolddns/a*
-chmod +x  package/new/luci-app-koolddns/root/usr/share/koolddns/d*
-chmod +x  package/new/luci-app-pptp-vpnserver-manyusers/root/etc/init.d/p*
-chmod +x  package/new/luci-app-pptp-vpnserver-manyusers/root/usr/share/rpcd/acl.d/l*
-# chmod +x  ./feeds/diy/luci-app-smartinfo/root/usr/lib/smartinfo/s*
-# chmod +x  ./feeds/diy/luci-app-smartinfo/root/etc/init.d/s*
-chmod +x  package/new/luci-app-adguardhome/root/etc/init.d/A*
-chmod +x  package/new/luci-app-adguardhome/root/etc/uci-defaults/4*
-chmod +x  package/new/luci-app-adguardhome/root/usr/share/AdGuardHome/*.sh
-chmod +x  package/new/luci-app-smartdns/root/etc/uci-defaults/5*
+

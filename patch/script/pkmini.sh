@@ -33,7 +33,7 @@ svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolddns ./package/
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./package/new/luci-app-autopoweroff
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-advanced ./package/new/luci-app-advanced
 svn co https://github.com/siropboy/mypackages/trunk/adguardhome ./package/new/adguardhome
-chmod 775 ./package/new/luci-app-autopoweroff/root/etc/init.d/a*
-chmod 775 ./package/new/luci-app-koolddns/root/etc/init.d/k*
-chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/a*
-chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/d*
+# chmod 775 ./package/new/luci-app-autopoweroff/root/etc/init.d/a*
+# chmod 775 ./package/new/luci-app-koolddns/root/etc/init.d/k*
+# chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/a*
+# chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/d*

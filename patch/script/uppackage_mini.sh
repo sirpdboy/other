@@ -38,3 +38,4 @@ chmod +x  package/new/luci-app-adguardhome/root/etc/init.d/A*
 chmod +x  package/new/luci-app-adguardhome/root/etc/uci-defaults/4*
 chmod +x  package/new/luci-app-adguardhome/root/usr/share/AdGuardHome/*.sh
 chmod +x  package/new/luci-app-smartdns/root/etc/uci-defaults/5*
+chmod -R 755 ./

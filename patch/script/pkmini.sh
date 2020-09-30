@@ -4,9 +4,9 @@
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
 rm -rf ./feeds/packages/admin/netdata
-rm -rf ./feeds/diy/smartdns
+# rm -rf ./feeds/diy/smartdns
 rm -rf ./feeds/packages/net/smartdns
-rm -rf ./feeds/diy/adguardhome
+# rm -rf ./feeds/diy/adguardhome
 # sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
@@ -28,13 +28,13 @@ echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/fil
 svn co https://github.com/siropboy/other/trunk/patch/netdata ./feeds/packages/admin/netdata
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentopd ./package/new/luci-theme-opentopd
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-/g' ./include/image.mk
-svn co https://github.com/siropboy/mypackages/trunk/smartdns ./package/new/smartdns
+# svn co https://github.com/siropboy/mypackages/trunk/smartdns ./package/new/smartdns
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolproxyR ./package/new/luci-app-koolproxyR
-svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolddns ./package/new/luci-app-koolddns
-svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./package/new/luci-app-autopoweroff
+# svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolddns ./package/new/luci-app-koolddns
+# svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./package/new/luci-app-autopoweroff
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-advanced ./package/new/luci-app-advanced
-svn co https://github.com/siropboy/mypackages/trunk/adguardhome ./package/new/adguardhome
+# svn co https://github.com/siropboy/mypackages/trunk/adguardhome ./package/new/adguardhome
 # chmod 775 ./package/new/luci-app-autopoweroff/root/etc/init.d/a*
 # chmod 775 ./package/new/luci-app-koolddns/root/etc/init.d/k*
 # chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/a*

@@ -13,6 +13,7 @@ rm -rf ./package/lean/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata
 rm -rf ./package/lean/v2ray-plugin
 rm -rf ./package/lean/microsocks
+mkdir ./package/new
 sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua

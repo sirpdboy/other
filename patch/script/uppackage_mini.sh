@@ -3,6 +3,7 @@
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
+mkdir package/new
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-mini-/g' include/image.mk
 svn co https://github.com/siropboy/mypackages/trunk/smartdns package/new/smartdns
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-smartdns package/new/luci-app-smartdns

@@ -43,7 +43,7 @@ svn co https://github.com/siropboy/mypackages/trunk/smartdns package/new/smartdn
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome package/new/AdGuardHome
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome package/new/luci-app-adguardhome
-git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/openclash
+git clone -b master --single-branch https://github.com/vernesong/OpenClash/luci-app-openclash package/new/luci-app-openclash
 git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash package/new/luci-app-clash
 sed -i 's/), 5)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 sed -i 's/), 1)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua

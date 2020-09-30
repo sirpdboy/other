@@ -29,4 +29,4 @@ svn co https://github.com/siropboy/mypackages/trunk/lua-maxminddb package/new/lu
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package package/package
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
-
+chmod -R 755 ./

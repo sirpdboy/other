@@ -27,14 +27,16 @@ curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/dev-19.07/
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 svn co https://github.com/siropboy/other/trunk/patch/netdata ./feeds/packages/admin/netdata
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentopd ./package/new/luci-theme-opentopd
-sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-/g' ./include/image.mk
-# svn co https://github.com/siropboy/mypackages/trunk/smartdns ./package/new/smartdns
-# svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
+sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-mini-/g' ./include/image.mk
+svn co https://github.com/siropboy/mypackages/trunk/smartdns ./package/new/smartdns
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolproxyR ./package/new/luci-app-koolproxyR
-# svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolddns ./package/new/luci-app-koolddns
-# svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./package/new/luci-app-autopoweroff
+svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolddns ./package/new/luci-app-koolddns
+svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./package/new/luci-app-autopoweroff
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-advanced ./package/new/luci-app-advanced
-# svn co https://github.com/siropboy/mypackages/trunk/adguardhome ./package/new/adguardhome
+svn co https://github.com/siropboy/mypackages/trunk//luci-app-adguardhome ./package/new//luci-app-adguardhome
+svn co https://github.com/siropboy/mypackages/trunk/adguardhome ./package/new/adguardhome
+git clone -b master --single-branch https://github.com/vernesong/OpenClash/luci-app-openclash ./package/new/luci-app-openclash
 # chmod 775 ./package/new/luci-app-autopoweroff/root/etc/init.d/a*
 # chmod 775 ./package/new/luci-app-koolddns/root/etc/init.d/k*
 # chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/a*

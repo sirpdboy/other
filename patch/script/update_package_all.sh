@@ -8,8 +8,9 @@ rm -rf ./package/lean/luci-theme-argon
 #rm -rf ./package/lean/trojan
 #rm -rf ./package/lean/v2ray
 # rm -rf ./package/lean/luci-lib-docker
-#rm -rf ./package/lean/luci-theme-opentomcat
-#rm -rf ./package/lean/luci-app-netdata
+rm -rf ./package/lean/luci-theme-opentomcat
+rm -rf ./feeds/diy/adguardhome
+rm -rf ./feeds/diy/smartdns
 rm -rf ./feeds/packages/admin/netdata
 rm -rf ./feeds/packages/net/smartdns
 sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
@@ -37,6 +38,7 @@ svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ package/new/lu
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 svn co https://github.com/siropboy/mypackages/trunk/smartdns package/new/smartdns
 svn co https://github.com/siropboy/mypackages/trunk/adguardhome package/new/adguardhome
+svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat package/new/luci-theme-opentomcat
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/new/smartdns
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns package/new/luci-app-smartdns
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter

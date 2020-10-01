@@ -9,7 +9,7 @@
 #rm -rf ./package/lean/v2ray
 # rm -rf ./package/lean/luci-lib-docker
 rm -rf ./package/lean/luci-theme-opentomcat
-rm -rf ./package/lean/luci-theme-opentopd
+rm -rf ./feeds/diy/luci-theme-opentopd
 #rm -rf ./package/lean/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata
 rm -rf ./feeds/packages/net/smartdns

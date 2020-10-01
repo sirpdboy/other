@@ -6,6 +6,7 @@
 rm -rf ./feeds/packages/admin/netdata
 # rm -rf ./feeds/diy/smartdns
 rm -rf ./feeds/packages/net/smartdns
+rm -rf ./packages/lean/luci-app-netdata
 # rm -rf ./feeds/diy/adguardhome
 # sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
@@ -18,6 +19,7 @@ sed -i 's/带宽监控/监控/g' ./feeds/luci/applications/luci-app-nlbwmon/po/z
 # sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g' package/lean/luci-app-unblockmusic/po/zh-cn/unblockmusic.po
 # sed -i 's/家庭云//g' package/lean/luci-app-familycloud/luasrc/controller/familycloud.lua
 sed -i '/filter_aaaa/d' ./package/network/services/dnsmasq/files/dhcp.conf
+sed -i 's/bootstrap/opentopd/g' ./feeds/luci/collections/luci/Makefile
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/autocore/files/index.htm > package/lean/autocore/files/index.htm
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/luasrc/controller/mia.lua > ./package/lean/luci-app-accesscontrol/luasrc/controller/mia.lua
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/po/zh-cn/mia.po > ./package/lean/luci-app-accesscontrol/po/zh-cn/mia.po

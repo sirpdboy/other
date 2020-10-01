@@ -28,4 +28,9 @@ svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./pack
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-advanced ./package/new/luci-app-advanced
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolproxyR ./package/new/luci-app-koolproxyR
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-/g' ./include/image.mk
+svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolddns ./package/new/luci-app-koolddns
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentopd ./package/new/luci-theme-opentopd
+chmod 775 ./package/new/luci-app-autopoweroff/root/etc/init.d/a*
+chmod 775 ./package/new/luci-app-koolddns/root/etc/init.d/k*
+chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/a*
+chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/d*

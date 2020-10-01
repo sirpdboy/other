@@ -4,8 +4,7 @@
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
 rm -rf ./feeds/packages/admin/netdata
-# rm -rf ./package/lean/luci-theme-opentomcat
-rm -rf ./feeds/packages/net/smartdns
+rm -rf .package/ctcgfw/luci-theme-opentomcat
 # sed -i 's/= "unreachable"/= "default"/g' feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
@@ -18,6 +17,7 @@ curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-ap
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/po/zh-cn/mia.po > package/lean/luci-app-accesscontrol/po/zh-cn/mia.po
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/luasrc/view/mia/mia_status.htm > package/lean/luci-app-accesscontrol/luasrc/view/mia/mia_status.htm
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
+sed -i 's/bootstrap/opentopd/g' ./feeds/luci/collections/luci/Makefile
 svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./package/new/luci-app-autopoweroff
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-advanced ./package/new/luci-app-advanced
@@ -25,6 +25,7 @@ svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolproxyR ./packag
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-/g' ./include/image.mk
 svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolddns ./package/new/luci-app-koolddns
 svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentopd ./package/new/luci-theme-opentopd
+svn co https://github.com/siropboy/mypackages/trunk/luci-theme-opentomcat ./package/new/luci-theme-opentomcat
 chmod 775 ./package/new/luci-app-autopoweroff/root/etc/init.d/a*
 chmod 775 ./package/new/luci-app-koolddns/root/etc/init.d/k*
 chmod 775  ./package/new/luci-app-koolddns/root/usr/share/koolddns/a*

@@ -1,16 +1,17 @@
+
 #!/bin/bash
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
 #rm -rf ./package/new
-#rm -rf ./package/lean/luci-theme-argon
+rm -rf ./package/lean/luci-theme-argon
 #rm -rf ./package/lean/trojan
 #rm -rf ./package/lean/v2ray
-# rm -rf ./package/lean/luci-lib-docker
-rm -rf ./package/lean/luci-theme-opentomcat
-rm -rf ./feeds/diy/luci-theme-opentopd
 rm -rf ./package/lean/luci-app-netdata
+rm -rf ./package/lean/luci-theme-opentomcat
+rm -rf ./feeds/diy/adguardhome
+rm -rf ./feeds/diy/smartdns
 rm -rf ./feeds/packages/admin/netdata
 rm -rf ./feeds/packages/net/smartdns
 sed -i 's/= "unreachable"/= "default"/g' ./feeds/luci/applications/luci-app-mwan3/luasrc/model/cbi/mwan/policyconfig.lua

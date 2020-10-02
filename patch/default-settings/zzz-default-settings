@@ -49,7 +49,7 @@ sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999
 #sed -i 's/eth0/eth0 eth2 eth3 eth4 eth5/g' /etc/config/network
 sed -i '/lan/a\ option mtu 1460'  /etc/config/network
 sed -i '/wan/a\ option mtu 1460'  /etc/config/network
-
+sed -i 's/\"bootstrap\"/\"opentopd\"/g'  /etc/config/luci
 sed -i "s/# //g" /etc/opkg/distfeeds.conf
 
 sed -i '/openwrt_luci/ { s/snapshots/releases\/18.06.8/g; }'  /etc/opkg/distfeeds.conf

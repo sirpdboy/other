@@ -20,7 +20,7 @@ echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/fil
 #sed -i 's/bootstrap/opentopd/g' ./feeds/luci/collections/luci/Makefile
 #svn co https://github.com/siropboy/other/trunk/patch/netdata feeds/packages/admin/netdata
 #svn co https://github.com/siropboy/mypackages/trunk/luci-app-netdata ./package/new/luci-app-netdata
-svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./package/new/luci-app-autopoweroff
+#svn co https://github.com/siropboy/mypackages/trunk/luci-app-autopoweroff ./package/new/luci-app-autopoweroff
 #svn co https://github.com/siropboy/mypackages/trunk/luci-app-advanced ./package/new/luci-app-advanced
 #svn co https://github.com/siropboy/mypackages/trunk/luci-app-koolproxyR ./package/new/luci-app-koolproxyR
 #sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-/g' ./include/image.mk

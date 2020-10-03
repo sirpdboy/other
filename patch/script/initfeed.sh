@@ -34,6 +34,6 @@ sed -i 's/bootstrap/$default_theme/g' feeds/luci/collections/luci/Makefile
 sed -i '/filter_/d' package/network/services/dnsmasq/files/dhcp.conf
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
-curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
+#curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > package/base-files/files/etc/openwrt_release1
 ./scripts/feeds update -i

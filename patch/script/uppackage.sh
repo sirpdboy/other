@@ -14,4 +14,4 @@ sed -i 's/), 5)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 sed -i 's/), 1)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/new/luci-app-serverchan
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/new/OpenAppFilter
-git clone -b master --single-branch https://github.com/siropboy/siropboy-package.git ./package/oppackpage
+svn co https://github.com/siropboy/siropboy-package/trunk  ./package/oppackpage

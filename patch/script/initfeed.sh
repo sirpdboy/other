@@ -1,10 +1,10 @@
 #/bin/sh
-# device_name='PDLEDE'      # Éè±¸Ãû£¬·Åµ½ÁËµ¥¶ÀÉè±¸µÄshÎÄ¼þÖÐÁË
-wifi_name="SirpdboyWIFI"       # Wifi Ãû×Ö ,·Åµ½ÁËµ¥¶ÀÉè±¸µÄshÎÄ¼þÖÐÁË
-lan_ip='192.168.1.1'        # Lan IpµØÖ·
-utc_name='Asia\/Shanghai'   # Ê±Çø
-default_theme='opentopd'   # Ä¬ÈÏÖ÷Ìâ ½áºÏÖ÷ÌâÎÄ¼þ¼ÐÃû×Ö
-theme_pd='https://github.com/sirpdboy/luci-theme-opentopd'  # Ö÷ÌâµØÖ·
+# device_name='PDLEDE'      # è®¾å¤‡å 
+wifi_name="SirpdboyWIFI"       # Wifi åå­— 
+lan_ip='192.168.1.1'        # Lan Ipåœ°å€
+utc_name='Asia\/Shanghai'   # æ—¶åŒº
+default_theme='opentopd'   # é»˜è®¤ä¸»é¢˜ ç»“åˆä¸»é¢˜æ–‡ä»¶å¤¹åå­—
+theme_pd='https://github.com/sirpdboy/luci-theme-opentopd'  # ä¸»é¢˜åœ°å€
 
 MovePkgsList="
 ./package/lean/luci-app-kodexplorer 
@@ -42,25 +42,24 @@ do
 	MovePkg $disablePkg
 done
 
-# ÃüÁî
-# echo "ÐÞ¸Ä»úÆ÷Ãû³Æ"
+# å‘½ä»¤
+# echo "ä¿®æ”¹æœºå™¨åç§°"
 # sed -i "s/OpenWrt/$device_name/g" package/base-files/files/bin/config_generate
 
-# echo "ÐÞ¸ÄwifiÃû³Æ"
+# echo "ä¿®æ”¹wifiåç§°"
 sed -i "s/OpenWrt/$wifi_name/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
-echo "ÉèÖÃlan ip"
+echo "è®¾ç½®lan ip"
 sed -i "s/192.168.1.1/$lan_ip/g" package/base-files/files/bin/config_generate
 
-echo "ÐÞ¸ÄÊ±Çø"
+echo "ä¿®æ”¹æ—¶åŒº"
 sed -i "s/'UTC'/'CST-8'\n   set system.@system[-1].zonename='$utc_name'/g" package/base-files/files/bin/config_generate
 
-echo "ÐÞ¸ÄÄ¬ÈÏÖ÷Ìâ"
+echo "ä¿®æ”¹é»˜è®¤ä¸»é¢˜"
 sed -i "s/bootstrap/$default_theme/g" ./feeds/luci/modules/luci-base/root/etc/config/luci
 sed -i 's/bootstrap/$default_theme/g' ./feeds/luci/collections/luci/Makefile
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf
-sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-ipv6-/g' ./include/image.mk
-echo "Ìí¼Ó¹Ø»ú"
+echo "æ·»åŠ å…³æœº"
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings

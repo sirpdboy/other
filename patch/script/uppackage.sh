@@ -3,10 +3,10 @@
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
-#rm -rf ./package/new
-# rm -rf ./package/lean/luci-theme-argon
-#rm -rf ./package/lean/trojan
-#rm -rf ./package/lean/v2ray
+rm -rf ./package/lean/v2rayv2ray-plugin
+rm -rf ./package/lean/luci-theme-argon
+rm -rf ./package/lean/trojan
+rm -rf ./package/lean/v2ray
 rm -rf ./package/lean/luci-app-netdata
 rm -rf ./package/lean/autocore
 rm -rf ./package/lean/luci-app-vsftpd

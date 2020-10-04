@@ -3,10 +3,10 @@
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
-#rm -rf ./package/new
-# rm -rf ./package/lean/luci-theme-argon
-#rm -rf ./package/lean/trojan
-#rm -rf ./package/lean/v2ray
+rm -rf ./package/lean/v2ray-plugin
+rm -rf ./package/lean/luci-theme-argon
+rm -rf ./package/lean/trojan
+rm -rf ./package/lean/v2ray
 rm -rf ./package/lean/luci-app-netdata
 rm -rf ./package/lean/autocore
 rm -rf ./package/lean/luci-app-vsftpd
@@ -32,11 +32,11 @@ echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy Mini'" > ./package/base-file
 #svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ ./package/new/luci-app-jd-dailybonus
 #git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/new/luci-app-serverchan
 #git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/new/OpenAppFilter
-svn co  https://github.com/vernesong/OpenClashr/trunk/luci-app-openclash ./package/new/luci-app-openclash
+svn co  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/new/luci-app-openclash
 #git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash ./package/new/luci-app-clash
 #sed -i 's/), 5)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 #sed -i 's/), 1)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
-svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/new/luci-app-vssr
+#svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/new/luci-app-vssr
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall ./package/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package ./package/lienol
 ./scripts/feeds update -i

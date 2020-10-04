@@ -35,7 +35,7 @@ curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-ap
 curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/luci-app-accesscontrol/luasrc/view/mia/mia_status.htm > ./package/lean/luci-app-accesscontrol/luasrc/view/mia/mia_status.htm
 curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/dev-19.07/net/https-dns-proxy/files/https-dns-proxy.config > ./feeds/packages/net/https-dns-proxy/files/https-dns-proxy.config
 curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/dev-19.07/net/https-dns-proxy/files/https-dns-proxy.init > ./feeds/packages/net/https-dns-proxy/files/https-dns-proxy.init
-echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
+echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy Mini'" > ./package/base-files/files/etc/openwrt_release1
 svn co https://github.com/siropboy/siropboy-package/trunk/netdata/ ./feeds/packages/admin/netdata
 svn co https://github.com/siropboy/siropboy-package/trunk/luci-app-netdata/ ./package/lean/luci-app-netdata
 svn co https://github.com/siropboy/siropboy-package/trunk/miniupnpd/ ./feeds/packages/net/miniupnpd

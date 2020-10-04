@@ -57,3 +57,4 @@ git clone -b master --single-branch https://github.com/vernesong/OpenClash ./pac
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/new/luci-app-vssr
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall ./package/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package ./package/lienol
+./scripts/feeds update -i

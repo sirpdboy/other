@@ -27,8 +27,8 @@ sed -i 's/家庭云//g' package/lean/luci-app-familycloud/luasrc/controller/fami
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf
 sed -i "s/bootstrap/opentopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 sed -i 's/bootstrap/opentopd/g' feeds/luci/collections/luci/Makefile
-sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-/g' include/image.mk
-echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
+sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +%Y%m%d)-ipv6-mini-/g' include/image.mk
+echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy Mini'" > ./package/base-files/files/etc/openwrt_release1
 #svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ ./package/new/luci-app-jd-dailybonus
 #git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/new/luci-app-serverchan
 #git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/new/OpenAppFilter

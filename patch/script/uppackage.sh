@@ -3,7 +3,7 @@
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
-rm -rf ./package/lean/v2rayv2ray-plugin
+rm -rf ./package/lean/v2ray-plugin
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/trojan
 rm -rf ./package/lean/v2ray
@@ -32,7 +32,7 @@ echo "DISTRIB_REVISION='S$(date +%Y.%m.%d) Sirpdboy'" > ./package/base-files/fil
 svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ ./package/new/luci-app-jd-dailybonus
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/new/luci-app-serverchan
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/new/OpenAppFilter
-svn co  https://github.com/vernesong/OpenClashr/trunk/luci-app-openclash ./package/new/luci-app-openclash
+svn co  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/new/luci-app-openclash
 git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash ./package/new/luci-app-clash
 sed -i 's/), 5)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
 sed -i 's/), 1)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua

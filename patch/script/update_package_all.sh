@@ -3,10 +3,10 @@
 # Description: Build OpenWrt using GitHub Actions
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
-#rm -rf ./package/new
-# rm -rf ./package/lean/luci-theme-argon
-#rm -rf ./package/lean/trojan
-#rm -rf ./package/lean/v2ray
+rm -rf ./package/lean/luci-theme-argon
+rm -rf ./package/lean/trojan
+rm -rf ./package/lean/v2ray
+rm -rf ./package/lean/v2ray-plugin
 rm -rf ./package/lean/luci-app-netdata
 rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./feeds/packages/net/miniupnpd
@@ -42,19 +42,14 @@ svn co https://github.com/siropboy/siropboy-package/trunk/miniupnpd/ ./feeds/pac
 svn co https://github.com/siropboy/siropboy-package/trunk/mwan3/ ./feeds/packages/net/mwan3
 svn co https://github.com/siropboy/siropboy-package/trunk/smartdns ./package/new/smartdns
 svn co https://github.com/siropboy/siropboy-package/trunk/adguardhome ./package/new/adguardhome
-
 svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ ./package/new/luci-app-jd-dailybonus
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/new/luci-app-serverchan
-# svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns ./package/new/smartdns
-# svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-smartdns ./package/new/luci-app-smartdns
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/new/OpenAppFilter
-# svn co https://github.com/kenzok8/openwrt-packages/trunk/adguardhome ./package/new/AdGuardHome
-# svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome ./package/new/luci-app-adguardhome
-git clone -b master --single-branch https://github.com/vernesong/OpenClash ./package/new/openclash
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/new/luci-app-openclash
 git clone -b master --single-branch https://github.com/frainzy1477/luci-app-clash ./package/new/luci-app-clash
-sed -i 's/), 5)/), 49)/g' ./package/new/luci-app-clash/luasrc/controller/clash.lua
-sed -i 's/), 1)/), 49)/g' ./package/new/luci-app-clash/luasrc/controller/clash.lua
-svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/new/luci-app-vssr
-svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall ./package/luci-app-passwall
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package ./package/lienol
+sed -i 's/), 5)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
+sed -i 's/), 1)/), 49)/g' package/new/luci-app-clash/luasrc/controller/clash.lua
+svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/new/luci-app-vssr
+svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/luci-app-passwall
+svn co https://github.com/xiaorouji/openwrt-package/trunk/package package/lienol
 ./scripts/feeds update -i

@@ -13,14 +13,13 @@ log(){
 
 C=$(uci -q get bypass.@global[0].run_mode)
 mkdir -p $T_FILE 2>/dev/null
-
+mkdir -p $TMP 2>/dev/null
 	if [ ! -f $T_FILE/china.txt ];then
-		mkdir -p $TMP
-		while !  (curl -kLfsm 5 -o /tmp/china.txt https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/all_cn.txt || curl -kLfsm 5 -o /tmp/china.txt https://raw.githubusercontent.com/sirpdboy/iplist/all_cn.txt);do
+		while !  ( curl -kLfsm 3 -o /tmp/china.txt https://op.supes.top/all_cn.txt  || curl -kLfsm 5 -o /tmp/china.txt https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/all_cn.txt || curl -kLfsm 5 -o /tmp/china.txt https://raw.githubusercontent.com/sirpdboy/iplist/all_cn.txt);do
 			sleep 2
 		done
 	else
-		 curl -kLfsm 5 -o /tmp/china.txt https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/all_cn.txt || curl -kLfsm 5 -o /tmp/china.txt https://raw.githubusercontent.com/sirpdboy/iplist/all_cn.txt
+		 curl -kLfsm 3 -o /tmp/china.txt https://op.supes.top/all_cn.txt  || curl -kLfsm 5 -o /tmp/china.txt https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/all_cn.txt || curl -kLfsm 5 -o /tmp/china.txt https://raw.githubusercontent.com/sirpdboy/iplist/all_cn.txt
 	fi
 	[[ -f /tmp/china.txt && $? == 0 ]] && {
 		if ! cmp -s /tmp/china.txt $T_FILE/china.txt;then
@@ -35,8 +34,8 @@ mkdir -p $T_FILE 2>/dev/null
         }
 
 
-	if [ ! -f $TMP/china_v6.txt ];then
-		mkdir -p $TMP||true
+	if [ ! -f $T_FILE/china_v6.txt ];then
+
 		while ! (curl -kLfsm 2 -o /tmp/china_v6.txt https://ispip.clang.cn/all_cn_ipv6.txt || curl -kLfsm 5 -o /tmp/china_v6.txt https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/all_cn_ipv6.txt);do
 			sleep 2
 		done
@@ -58,12 +57,12 @@ mkdir -p $T_FILE 2>/dev/null
 
 
 
-	if [ ! -f $TMP/gfw.list ];then
-		while ! ( curl -kLfsm 5 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt  || curl -kLfsm 5  -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/gfwlist.txt );do
+	if [ ! -f $T_FILE/gfw.list ];then
+		while ! ( curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt || curl -kLfsm 5 -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt  || curl -kLfsm 5  -o /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/gfwlist.txt );do
 			sleep 2
 		done
 	else
-		curl -Lfso /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt  || curl -Lfso  /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/gfwlist.txt 
+		curl -kLfsm 3 -o /tmp/gfw.b64 https://op.supes.top/gfwlist.txt || curl -Lfso /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt  || curl -Lfso  /tmp/gfw.b64 https://cdn.jsdelivr.net/gh/sirpdboy/iplist@main/gfwlist.txt 
 	fi
 	if [[ -f /tmp/gfw.b64 && $? == 0 ]];then
 		$DIR/gfw

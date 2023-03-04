@@ -74,7 +74,7 @@ end
  		local eth_info = luci.sys.exec("sysinfo ethinfo")
 		local cpu_speed = luci.sys.exec("sysinfo cpuspeed")
 		local user_info = luci.sys.exec("cat /proc/net/arp | grep 'br-lan' | grep '0x2' | wc -l") or "0"
-		local cpu_wd = luci.sys.exec("sysinfo armtempinfo") or 0
+		local cpu_wd ="+" .. luci.sys.exec("sysinfo armtempinfo") .. "°C"
 		local upnp_info = luci.sys.exec("sysinfo upnpinfo") or 0
 		local cpu_usage = luci.sys.exec("top -n1 | awk '/^CPU/ {printf(\"%d%\", 100 - $8)}'") or "6%"
 		local up_time = luci.sys.exec("sysinfo cntime")

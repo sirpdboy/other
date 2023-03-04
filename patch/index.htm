@@ -76,10 +76,8 @@ end
 		local cpu_speed = luci.sys.exec("sysinfo cpuspeed")
 		local user_info = luci.sys.exec("cat /proc/net/arp | grep 'br-lan' | grep '0x2' | wc -l") or "0"
         if has_temp then
-		    local cpu_wd ="+".. (luci.sys.exec("sysinfo armtempinfo")) .. "°C"
-        	if  cpu_wd == "+0°C" or cpu_wd == "+°C"   then
-		    	cpu_wd= "+0°C （无温控或检测问题）"
-       		end
+		 local cpu_wd ="+".. (luci.sys.exec("sysinfo armtempinfo")) .. "°C"
+
 		end
 		local upnp_info = luci.sys.exec("sysinfo upnpinfo") or 0
 		local cpu_usage = luci.sys.exec("top -n1 | awk '/^CPU/ {printf(\"%d%\", 100 - $8)}'") or "6%"

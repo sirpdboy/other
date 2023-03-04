@@ -78,7 +78,6 @@ end
         	if  cpu_wd == "+0°C" or cpu_wd == "+°C"   then
 		    	cpu_wd= "+0°C （无温控或检测问题）"
        		end
-		end
 		local upnp_info = luci.sys.exec("sysinfo upnpinfo") or 0
 		local cpu_usage = luci.sys.exec("top -n1 | awk '/^CPU/ {printf(\"%d%\", 100 - $8)}'") or "6%"
 		local up_time = luci.sys.exec("sysinfo cntime")

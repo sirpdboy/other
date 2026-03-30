@@ -1,18 +1,6 @@
-From 0c1f0e62e72e4c89b0db25aa6f6baa19c7e91e75 Mon Sep 17 00:00:00 2001
-From: sbwml <admin@cooluc.com>
-Date: Fri, 13 Sep 2024 19:36:44 +0800
-Subject: [PATCH 1/5] luci-mod-system: add modal overlay dialog to reboot
-
-Signed-off-by: sbwml <admin@cooluc.com>
----
- .../resources/view/system/reboot.js           | 21 ++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
-
-diff --git a/modules/luci-mod-system/htdocs/luci-static/resources/view/system/reboot.js b/modules/luci-mod-system/htdocs/luci-static/resources/view/system/reboot.js
-index 92e1dd4..c106f78 100644
---- a/modules/luci-mod-system/htdocs/luci-static/resources/view/system/reboot.js
-+++ b/modules/luci-mod-system/htdocs/luci-static/resources/view/system/reboot.js
-@@ -30,7 +30,27 @@ return view.extend({
+--- patch/rebooty.js	2025-04-13 16:55:48.489819905 +0000
++++ patch/reboot.js	2025-04-13 16:55:48.493819943 +0000
+@@ -30,7 +30,27 @@
  		body.appendChild(E('hr'));
  		body.appendChild(E('button', {
  			'class': 'cbi-button cbi-button-action important',
@@ -41,5 +29,3 @@ index 92e1dd4..c106f78 100644
  		}, _('Perform reboot')));
  
  		return body;
--- 
-2.42.0

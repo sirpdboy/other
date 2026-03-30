@@ -1,0 +1,37 @@
+--- patch/upnp-bak.js	2025-04-12 15:53:05.478759578 +0000
++++ patch/upnp.js	2025-04-12 15:53:05.482759569 +0000
+@@ -6,7 +6,7 @@
+ 'require rpc';
+ 'require form';
+ 
+-var callInitAction, callUpnpGetStatus, callUpnpDeleteRule, handleDelRule;
++var callInitAction, callUpnpGetStatus, callUpnpDeleteRule,callUciGet, handleDelRule;
+ 
+ callInitAction = rpc.declare({
+ 	object: 'luci',
+@@ -27,6 +27,15 @@
+ 	params: [ 'token' ],
+ 	expect: { result : "OK" },
+ });
++callUciGet = rpc.declare({
++    object: 'uci',
++    method: 'get',
++    params: ['config', 'section', 'option']
++});
++
++var iprul;
++callUciGet('network', 'lan', 'ipaddr').then(function(res) {
++    iprul = `http://${res.value}/`;});
+ 
+ handleDelRule = function(num, ev) {
+ 	dom.parent(ev.currentTarget, '.tr').style.opacity = 0.5;
+@@ -162,8 +171,8 @@
+ 		o.placeholder = 600
+ 
+ 		o = s.taboption('advanced', form.Value, 'presentation_url', _('Presentation URL'))
+-		o.placeholder = 'http://192.168.1.1/'
+ 
++		o.placeholder = iprul;
+ 		o = s.taboption('advanced', form.Value, 'upnp_lease_file', _('UPnP lease file'))
+ 		o.placeholder = '/var/run/miniupnpd.leases'
+ 

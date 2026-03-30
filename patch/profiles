@@ -1,0 +1,834 @@
+## 2021-2025 sirpdboy  herboy2008@gmail.com
+
+White="\e[0m"
+Yellow="\e[33m"
+Red="\e[31m"
+Blue="\e[34m"
+Green="\e[32m"
+Skyb="\e[36m"
+
+function EY() { echo -e "${Yellow}$1${White}"; }
+function ER() { echo -e "${Red}$1${White}"; }
+function EB() { echo -e "${Blue}$1${White}"; }
+function EG() { echo -e "${Green}$1${White}"; }
+function EW() { echo -e "${White}$1${White}"; }
+#!/bin/bash
+
+White="\e[0m"
+Yellow="\e[33m"
+Red="\e[31m"
+Blue="\e[34m"
+Green="\e[32m"
+Skyb="\e[36m"
+
+function EY() { echo -e "${Yellow}$1${White}"; }
+function ER() { echo -e "${Red}$1${White}"; }
+function EB() { echo -e "${Blue}$1${White}"; }
+function EG() { echo -e "${Green}$1${White}"; }
+function EW() { echo -e "${White}$1${White}"; }
+
+Sysinfo() {
+    local DISTRIB_ARCH=$(grep "DISTRIB_ARCH=" /etc/openwrt_release 2>/dev/null | awk -F "'" '{print $2}')
+    if [ -z "$DISTRIB_ARCH" ]; then
+    DISTRIB_ARCH="Unknown"
+    fi
+    local CPU_Model=$(awk -F ':[ ]' '/model name/{printf ($2);exit}' /proc/cpuinfo 2>/dev/null)
+    if [ -z "$CPU_Model" ]; then
+    CPU_Model="Unknown"
+    fi
+    if grep -Eq "x86" "/etc/openwrt_release"; then
+        [ -d /sys/firmware/efi ] && ARCH="${DISTRIB_ARCH} - UEFI" || ARCH="${DISTRIB_ARCH} - BIOS"
+    else
+        ARCH=${DISTRIB_ARCH}
+    fi
+   local Mem_sum=$(free | awk '/Mem/{printf("%dMB\n", $2/1024)}')
+   local Overlay_Available=$( df -h | grep overlay | awk -F ' ' '{print $2}' |head  -1)
+   local Tmp_Available=$(df -h | awk '/tmp/{print $4}' | head -n1)
+   local TEMP=$(sensors 2>/dev/null | awk '/Core 0/{print $3}')
+   local Sys_time=$(awk '{d=$1/86400;h=($1%86400)/3600;m=($1%3600)/60;s=$1%60} {printf("%d 天 %d 小时 %d 分钟 %d 秒\n",d,h,m,s)}' /proc/uptime)
+
+cat <<EOF
+$(EY " Hostname: $(uname -n)  - 架构: ${ARCH}")
+$(EW " 运行时间: ${Sys_time}")
+$(ER " CPU 型号: ${CPU_Model} ") $([ -n "${TEMP}" ] && echo -e " | CPU 温度: ${TEMP}")
+$(EW " Overlay/TMP: ${Overlay_Available} / ${Tmp_Available}    内存总量: ${Mem_sum}")
+$(EW " 固件版本: $(uname -rs)")
+EOF
+}
+
+
+pwait() {
+for i in '-' '\' '|' '/'; do
+echo -ne " 请稍等( please wait)... $i)\r"
+sleep 1
+done
+}
+
+function show_network_interfaces() {
+eth_info=()
+echo -e "${Green}\n 当前网卡状态(Network Interfaces Status):${White}"
+for i in $(ls /sys/class/net/ | grep -E '^(eth[0-9]+|usb[0-9]+|lan[0-9]+|wan)$'); do
+     ifstatus=$(ubus call network.interface dump | jsonfilter -e "@.interface[@.device='$i']")
+     iftype="-"
+      if [ -n "$ifstatus" ]; then
+           iftype=$(echo "$ifstatus" | jsonfilter -e "@.interface")
+        else
+             name=$(uci show network | grep "$i" | head -n1 | awk -F '.' '{print $2}' | awk -F '_' '{print $1}')
+            if [ "x$name" == "x@device[0]" ] && [ "$iftype" == "-" ]; then
+                  iftype="lan"
+            fi
+        fi
+
+
+    carrier=$(cat /sys/class/net/"$i"/carrier 2>/dev/null)
+     [[ "$carrier" == "1" ]] && status="已连接up"|| status="未连接down"
+	speed=$(cat /sys/class/net/"$i"/speed 2>/dev/null)
+  	if [ -z "$speed" ] || [ "$speed" = "-" ]; then
+ 	       speed="-"
+  	else
+   	         if [ "$speed" -ge 1000 ]; then
+   	             if [ "$speed" -eq 2500 ]; then
+   	                 speed="2.5 Gb/s"
+   	             else
+   	                 speed=$(awk -v s=$speed 'BEGIN {printf "%.0f Gb/s", s/1000}')
+  	              fi
+  	          else
+  	              speed="${speed} Mb/s"
+   	         fi
+ 	fi
+
+    eth_info+=("$iftype|$i|$status|$speed")
+done
+
+printf "%-12s %-16s %-16s %-16s\n" " 接口(type) 网卡(Interface)" "状态(Status)" "速度(Speed)"
+for entry in "${eth_info[@]}"; do
+    IFS='|' read -r iftype i status speed <<< "$entry"
+    printf "%-12s %-16s %-16s %-16s\n" " $iftype" "$i" "$status" "${speed}"
+done
+
+echo -e "${Green} 当前IPv4 地址: ${IP_Address} ${White}\n"
+}
+
+function k_network() {
+echo
+while :; do
+echo -e "\n q. 返回(return)"
+
+echo -e "${Green}\n 重置之后的IP地址是(What is the IP address after resetting):192.168.10.1${White}\n"
+read -p " 是否重置网络设置?(Do you want to reset network settings?)[Y/n]:" YN
+
+case ${YN} in
+[Yy]) 
+    if [[ "x$ifname" == "xdevice" ]]; then
+
+cat >/etc/config/network <<-EOF
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+	option device 'lo'
+
+config globals 'globals'
+	option packet_steering '1'
+	option ula_prefix 'fdf3:0ad0:380c::/48'
+
+config interface 'lan'
+	option proto 'static'
+	option ipaddr '192.168.10.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+	option delegate '0'
+	option device 'br-lan'
+
+config interface 'wan'
+	option ifname 'eth1'
+	option proto 'dhcp'
+	option mtu '1420'
+	option metric '41'
+	option delegate '0'
+	option ipv6 'auto'
+	option device 'eth1'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'eth0'
+
+EOF
+
+else
+    
+cat >/etc/config/network <<-EOF
+
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd25:e8c1:d777::/48'
+	option packet_steering '1'
+
+config interface 'lan'
+	option type 'bridge'
+	option proto 'static'
+	option ipaddr '192.168.10.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+	option ifname 'eth0'
+	option delegate '0'
+
+config interface 'wan'
+	option ifname 'eth1'
+	option proto 'dhcp'
+	option mtu '1420'
+	option metric '41'
+	option delegate '0'
+	option ipv6 'auto'
+
+EOF
+    fi
+
+    /etc/init.d/rpcd restart
+    uci commit network
+    
+    ER " 已经恢复默认网络设置(Default network settings have been restored)..."
+    /etc/init.d/network restart
+    pwait
+    k_themenetwork
+;;
+[Nn])
+    EW " 返回上级菜单(return)"
+    pwait
+    k_themenetwork
+
+;;
+[Qq])
+    pwait
+    . /etc/profiles
+;;
+
+esac
+done
+}
+
+
+function k_theme() {
+echo
+while :; do
+echo -e "\n q. 返回(return)"
+
+read -p " 是否恢复默认主题设置?(Do you want to restore the default theme settings?)[Y/n]:" YN
+
+case ${YN} in
+[Yy]) 
+
+    ER " 恢复默认主题完成(Restore default theme completed)..."
+    [  -s /etc/init.d/advancedplus ] && /etc/init.d/advancedplus reset   
+    uci set luci.main.mediaurlbase='/luci-static/kucat'
+    uci set luci.themes.KuCat=/luci-static/kucat
+    uci set luci.themes.Bootstrap='/luci-static/bootstrap'
+    uci set argon.@global[0].bing_background=0
+    rm -rf /etc/config/wizard
+    rm -rf /etc/config/netwizard_hide
+    uci commit luci
+    uci commit argon
+    /etc/init.d/rpcd restart
+    pwait
+    k_themenetwork
+;;
+[Nn])
+    EW " 返回上级菜单(return)"
+    pwait
+    k_themenetwork
+
+;;
+[Qq])
+    pwait
+    . /etc/profiles
+;;
+
+esac
+done
+}
+
+function k_themenetwork(){
+   EY "\n 1. 恢复默认主题设置(Restore default theme settings) "
+   EY " 2. 恢复默认网络设置(Restore default network settings)"
+    EW " 0/q. 返回主菜单(return main menu) \n"
+    while :; do
+        read -p " 输入功能编号(Enter the function number): " CHOOSES
+        case $CHOOSES in
+            1) k_theme;;
+            2) k_network;;
+            0|Q|q) 
+	        pwait
+              . /etc/profiles ;;
+        esac
+    done
+}
+
+function is_vip() {
+    local ezver
+    ezver=$(grep -o "EZVER=\S*" /etc/ezopenwrt_version 2>/dev/null | cut -d'=' -f2)
+    [[ "${ezver^^}" =~ VIP ]]
+}
+
+function k_poweroff() {
+while :; do
+echo -e "\n q. 返回(return)"
+read -p " 是否确定关闭系统？(Are you sure to shut down the system)[Y/n]:" YN
+case ${YN} in
+[Yy]) 
+    ER " 正在关闭系统中，请稍等(Shutting down the system, please wait)..."
+    poweroff -f
+;;
+[Nn])
+    EW " 返回主菜单(return)"
+    pwait
+    . /etc/profiles 
+
+;;
+[Qq])
+    . /etc/profiles
+;;
+*)
+    ER " 输入正确选择(Enter the correct choice!)"
+;;
+esac
+done
+}
+
+function k_change_ip() {
+  echo -e "\n q. 返回(return) ,当前IPv4：${IP_Address}"
+  export k_ip=" 请输入新IPv4地址(Input new IPv4)"
+  echo
+  while :; do
+  domainy=""
+  read -p " ${k_ip}：" keyip
+  if [[ -n "${keyip}" ]] && [[ "$(echo ${keyip} |grep -Eoc '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')" == '1' ]]; then
+    keyipy="Y"
+  fi 
+    if [[ -n "${keyip}" ]] && [[ ${keyip} == 'q'  ||  ${keyip} == 'Q'  ]]; then
+    keyipy="Q"
+  fi
+
+  case $keyipy in
+  Y)
+    export keyipn="${keyip}"
+    echo " 修改中，请稍等...( please wait... )" 
+    uci set network.lan.proto='static'
+    uci set network.lan.ipaddr="${keyip}"
+    uci del dhcp.lan.ignore
+    uci del dhcp.lan.dynamicdhcp
+    uci set dhcp.lan.force='1'
+    uci commit network
+    ER " 您的IP已经改为(Your IP has been changed to)：${keyip}！"
+    [ -s /etc/config/netwizard ] && uci -q set netwizard.default.lan_ipaddr="${keyip}" && uci commit netwizard 
+    /etc/init.d/network restart
+    pwait
+    uci set network.lan.ipaddr="${keyip}"
+    uci commit network
+    /etc/init.d/network restart
+    . /etc/profiles 
+  ;; 
+
+ Q)
+    . /etc/profiles 
+
+;;
+
+  *) 
+  echo 
+  echo -e " q. 返回(return) ,当前IPv4：${IP_Address}"
+  export k_ip=" 输入正确格式IP地址[x.x.x.x](enter IP address format[x.x.x.x])"
+  ;;
+  esac
+  done
+}
+function k_clear() {
+while :; do 
+echo -e "\n q. 返回(return)"
+read -p " 否清空密码并重启？(Clear password and Reboot)[Y/n]：" YN
+case ${YN} in
+[Yy]) 
+    if [[ "$USER" == "admin" ]]; then
+      sed -i 's/admin:.*/admin::0:0:99999:7:::/g' /etc/shadow
+      passwd -d root
+    else
+      passwd -d root
+    fi
+    goreboot
+;;
+[Nn])
+    EW " 返回主菜单(return)"
+    pwait
+    . /etc/profiles 
+
+;;
+[Qq])
+    pwait
+    . /etc/profiles 
+
+;;
+*)
+    ER " 输入正确选择!(Enter the correct choice!)"
+;;
+esac
+done
+}
+
+function k_reboot() {
+echo
+while :; do
+echo -e "\n q. 返回(return)"
+read -p " 是否重启系统(Whether to restart the system)[Y/n]:" YN
+case ${YN} in
+[Yy]) 
+    ER " 系统重启中(System is restarting)..."
+    uci set argon.@global[0].bing_background=0
+    uci commit argon
+    reboot -f
+;;
+[Nn])
+    EW " 返回主菜单(return)"
+    pwait
+    . /etc/profiles 
+;;
+[Qq])
+    pwait
+    . /etc/profiles 
+
+;;
+*)
+    ER "输入正确选择!(Enter the correct choice!)"
+;;
+esac
+done
+}
+
+function k_firstboot() {
+echo
+while :; do
+echo -e "\n q. 返回(return)"
+read -p " 是否恢复出厂设置(Restore factory settings)?[Y/y]or[N/n]:" YN
+case ${YN} in
+[Yy]) 
+    ER " 已经恢复出厂设置,系统重启中(The factory settings have been restored, and the system is restarting)..." 
+    firstboot -y
+    reboot -f
+    goreboot
+;;
+[Nn])
+    EW "取消返回主菜单(return)"
+    pwait
+    . /etc/profiles 
+
+;;
+[Qq])
+    pwait
+    . /etc/profiles 
+
+;;
+*)
+    pwait
+    . /etc/profiles 
+;;
+esac
+done
+}
+
+
+function k_kmodregdrv() {
+echo
+while :; do
+echo -e "\n q. 返回(return)"
+echo -e "\n 装载全部驱动可能对系统有影响.(May have an impact on the system stability.)"
+read -p " 是否确定?(are you sure? )[Y/n]:" YN
+
+case ${YN} in
+[Yy]) 
+
+    echo
+if is_vip; then
+    ER " 正在装载中，请稍等。。。(In mount, Please wait....)"
+    bash /etc/kmodreg drv 2 > /dev/null 2>&1 
+    echo
+    EY " 已装载全部的网卡驱动！(All NIC drivers are loaded!)"
+else
+        echo " 目前此功能仅限VIP版本提供！"
+fi
+    echo
+    pwait
+    . /etc/profiles 
+;;
+[Nn])
+    EW " 返回主菜单(return)"
+    pwait
+    . /etc/profiles 
+
+;;
+[Qq])
+    . /etc/profiles
+;;
+*)
+    ER " 输入正确选择(Enter the correct choice!)"
+;;
+esac
+done
+}
+
+
+
+function k_kmodregdocker() {
+echo
+while :; do
+echo -e " \n q. 返回(return)"
+read -p " 是否装载docker服务?(Whether to load Docker service?)[Y/n]:" YN
+
+case ${YN} in
+[Yy]) 
+
+    echo
+if is_vip; then
+    ER " 正在装载中，请稍等。。。(In mount, Please wait....)"
+    bash /etc/kmodreg docker 2 > /dev/null 2>&1 
+    echo
+    EY " docker服务装载成功！请重新登录！(Docker service successfully loaded!)"
+else
+    echo " 目前此功能仅限VIP版本提供！"
+fi
+    echo
+    pwait
+    . /etc/profiles 
+;;
+[Nn])
+    EW " 返回主菜单(return)"
+    pwait
+    . /etc/profiles 
+
+;;
+[Qq])
+    . /etc/profiles
+;;
+*)
+    ER " 输入正确选择(Enter the correct choice!)"
+;;
+esac
+done
+}
+
+function Check_Pkg() {
+	while [[ $1 ]];do
+		CMD=$(echo $1 | cut -d ':' -f1)
+		PKG=$(echo $1 | cut -d ':' -f2)
+		[[ -z ${PKG} ]] && PKG=${CMD}
+		if [[ $(CHECK_PKG ${CMD}) == false ]]
+		then
+			if_False=1
+			ECHO r "\n 缺少软件包(Missing package):[${PKG}]"
+		fi
+		shift
+	done
+	if [[ ${if_False} == 1 ]]
+	then
+		pwait
+		return 1
+	else
+		return 0
+	fi
+}
+function CHECK_PKG() {
+	which $1 > /dev/null 2>&1
+	[[ $? == 0 ]] && echo true || echo false
+}
+
+function goreboot() {
+  if [[ 0 -eq $? ]]; then
+    ER " $1 完成,正在为您重启系统(Done, restarting the system for you)"
+    reboot -f
+  else
+    ER " $1 失败 (invalid)"
+    pwait
+    . /etc/profiles 
+
+  fi
+}
+
+function free_memory() {
+
+    EY " 清除缓存记录成功!(Clear cache records successfully!) \n"
+    rm -rf /tmp/luci*
+    pwait
+    . /etc/profiles 
+}
+
+
+function k_bindwan() {
+  local prompt_wan="请输入需要绑定WAN口网卡名字(eg: eth0): "
+  local invalid_input="输入格式不正确，请输入类似 eth0 的格式。"
+  local empty_input="输入不能为空(Input cannot be empty)！"
+  echo -e "q. 返回上级菜单(return)"
+  while true; do
+    read -p "${prompt_wan}" keyip
+    keyip=$(echo "$keyip" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')  
+    if [[ "${keyip}" =~ ^[qQ]$ ]]; then
+      k_bindlanwan
+      return
+    fi
+    if [[ -z "${keyip}" ]]; then
+      echo -e "\n${empty_input}"
+      continue
+    fi
+    if ! [[ "${keyip}" =~ ^(eth|usb|wlan)(0?[0-9]|1[0-9]|20)$ ]]; then
+      echo -e "\n${invalid_input}"
+      continue
+    fi
+    echo -e "您的WAN口绑定为(Your WAN port is bound as)：${keyip}！"
+    pwait
+       if [ ! `uci -q get network.wan` ] ;then 
+           uci -q set network.wan=interface
+           uci -q add_list firewall.@zone[1].network='wan'
+       fi 
+        if [ `uci -q get network.wan6` ] ;then 
+           uci -q add_list firewall.@zone[1].network='wan6'
+       fi
+    if [[ "x$ifname" == "xdevice" ]]; then
+
+      lanport=`uci get network.@$ifname[0].ports | sed "s/${keyip}//g" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
+      uci -q set network.@$ifname[0].ports="$lanport"
+    else
+
+      lanport=`uci get network.lan.$ifname | sed "s/${keyip}//g" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
+      uci -q set network.lan.$ifname="$lanport"
+    fi
+    [ `uci -q get network.wan` ] && uci -q set network.wan.${ifname}="${keyip}"
+    [ `uci -q get network.wan6` ] && uci -q set network.wan6.${ifname}="${keyip}"
+    uci commit network
+    /etc/init.d/network restart
+    pwait
+    k_bindlanwan
+    return
+  done
+}
+function validate_interfaces() {
+  local interfaces=("$@")
+  for interface in "${interfaces[@]}"; do
+    if ! [[ "$interface" =~ ^(eth|usb|wlan)(0?[0-9]|1[0-9]|20)$ ]]; then
+      echo -e "\n输入格式不正确，请输入类似 eth0 eth1 的格式！"
+      return 1
+    fi
+  done
+  return 0
+}
+ 
+function k_bindlan() {
+  local prompt_lan="请输入需要绑定的网卡名字(用空格分隔, eg: eth0 eth1): "
+  local return_to_menu="q. 返回上级菜单(return)"
+  local empty_input="输入不能为空！"
+  echo "$return_to_menu"
+  while true; do
+    read -p "$prompt_lan" keyip
+    keyip=$(echo "$keyip" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')  
+    if [[ "$keyip" =~ ^[qQ]$ ]]; then
+      k_bindlanwan
+      return
+    fi
+    if [[ -z "$keyip" ]]; then
+      echo -e "\n$empty_input"
+      continue
+    fi
+    IFS=' ' read -r -a interfaces <<< "$keyip"
+    if ! validate_interfaces "${interfaces[@]}"; then
+      continue
+    fi
+    echo -e "您的LAN口绑定为：${keyip}！"
+    pwait
+    waneth=`uci -q get network.wan.${ifname} | sed "s/${keyip}//g" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
+    [ `uci -q get network.wan` ] && uci -q set network.wan.${ifname}="${waneth}"
+    [ `uci -q get network.wan6` ] && uci -q set network.wan6.${ifname}="${waneth}"
+    if [ "x$ifname" = "xdevice" ]; then
+      uci -q set network.@$ifname[0].ports="${keyip}"
+    else
+      uci -q set network.lan.$ifname="${keyip}"
+    fi
+    uci commit network
+    pwait
+    /etc/init.d/network restart
+    k_bindlanwan
+    return
+  done
+}
+
+function k_bindlanwan() {
+    EY "\n 1. 绑定LAN口(Bind LAN port network card) "
+    EY " 2. 绑定WAN口(Bind WAN port network card)"
+    EW " 0/q. 返回主菜单(return main menu) \n"
+    while :; do
+        read -p " 输入功能编号(Enter the function number): " CHOOSES
+        case $CHOOSES in
+            1) k_bindlan;;
+            2) k_bindwan;;
+            0|Q|q) 
+	        pwait
+              . /etc/profiles ;;
+        esac
+    done
+}
+    
+function k_rebootpoweroff() {
+    EY "\n 1. 重启系统(Reboot) "
+    EY " 2. 关闭系统(Shutdown)"
+    EW " 0/q. 返回主菜单(return main menu) \n"
+    while :; do
+        read -p " 输入功能编号(Enter the function number): " CHOOSES
+        case $CHOOSES in
+            1)  reboot -f ;;
+            2)  poweroff -f ;;
+            0|Q|q) 
+	        pwait
+              . /etc/profiles ;;
+        esac
+    done
+
+}
+
+function otherpro() {
+    EY "\n 1. 停止家长控制/时间控制(Stop Parentcontrol/Timecontrol)"
+    EY " 2. 装载全部网卡驱动(Load all network card drivers)"
+    EY " 3. 装载 Docker 服务(Loading Docker Service)"
+    EW " 0/q. 返回主菜单(return main menu) \n"
+    while :; do
+        read -p " 输入功能编号(Enter the function number): " CHOOSEO
+        case $CHOOSEO in
+            1) 
+	        EY " 停卡家长控制插件成功!(Stop Parentcontrol completed!) \n"
+		sed -i '/enable/d' /etc/config/timecontrol
+		sed -i '/enable/d' /etc/config/parentcontrol
+	        /etc/init.d/timecontrol restart    2 > /dev/null 2>&1 
+	        /etc/init.d/parentcontrol restart    2 > /dev/null 2>&1 
+	        pwait
+	        . /etc/profiles  ;;
+            2) k_kmodregdrv ;;
+            3) k_kmodregdocker ;;
+            0|Q|q) 
+	        pwait
+              . /etc/profiles ;;
+        esac
+    done
+}
+
+function check_network() {
+
+	ping 223.5.5.5 -c 1 -W 2 > /dev/null 2>&1 && \
+	EY  "\n 基础aliyu网络连接正常!(Basic aliyu network connection is OK!)" || EG  "\n 基础aliyu网络连接错误!(Basic aliyu network connection error!)"
+	nslookup -type=a baidu.com > /dev/null 2>&1 &&\
+	EY  " 基础 IPv4 DNS 解析正常!(Basic IPv4 DNS resolution is OK!)" || EG  " 基础 IPv4 DNS 解析错误!(Basic IPv4 DNS resolution error!)"
+	Google_Check=$(curl -I -s --connect-timeout 3 http://www.google.com/generate_204 -w %{http_code} | tail -n1)
+	case ${Google_Check} in
+	204)
+		EY " Google 连接正常!(Google connection is OK!)"
+	;;
+	*)
+		EG " Google 连接错误!(Google connection is error!)"
+	;;
+	 esac
+	 ER " "
+	 pwait
+         . /etc/profiles 
+
+}
+
+goexit() {
+
+  EW " "
+  exit
+}
+
+export LANG=zh_CN.UTF-8
+export LC_ALL=zh_CN.UTF-8
+clear
+while true; do
+  if [ -f /etc/board.json ]; then
+    model_id=$(jsonfilter -e '@.model.id' < /etc/board.json 2>/dev/null)
+    if [ $? -eq 0 ]; then
+      clear
+      break
+    fi
+  else
+    pwait
+  fi
+done
+[ -e /tmp/.failsafe ] && export FAILSAFE=1
+if ( grep -qs '^root::' /etc/shadow && \
+     [ -z "$FAILSAFE" ] )
+then
+cat << EOF
+================== WARNING! ====================
+There is no root password defined on this device!
+Use the "passwd" command to set up a new password
+in order to prevent unauthorized SSH logins.
+------------------------------------------------
+EOF
+fi
+[ -f /etc/banner ] && echo -e "${Skyb}$(cat /etc/banner)${White}"
+[ -n "$FAILSAFE" ] && cat /etc/banner.failsafe
+
+export IP_Address=$(uci -q get network.lan.ipaddr)
+Sysinfo
+grep -Fsq '/ overlay ro,' /proc/mounts && {
+	echo -e "${Red}Your JFFS2-partition seems full and overlayfs is mounted read-only."
+	echo -e "Please try to remove files from /overlay/upper/... and reboot!${}"
+}
+export PATH="/usr/sbin:/usr/bin:/sbin:/bin"
+export HOME=$(grep -e "^${USER:-root}:" /etc/passwd | cut -d ":" -f 6)
+export HOME=${HOME:-/root}
+export CONFIG=/etc/config
+
+ifname=$(uci -q get network.lan.ifname ) 
+[ "x$ifname" = "x" ] && ifname="device" || ifname="ifname" 
+[ -n "$FAILSAFE" ] || {
+	for FILE in /etc/profile.d/*.sh; do
+		[ -e "$FILE" ] && . "$FILE"
+	done
+	unset FILE
+}
+
+function mainmenu() {
+    show_network_interfaces
+    ER "     Sirdpboy 快捷菜单(Shortcut Menu)   "
+    EG "  menu->(Call Menu)调用菜单 进阶设置中可禁用/显示此菜单 "
+    EY " 1.修改后台 IPv4 地址(Modify IPv4 address)"
+    EY " 2.网卡绑定(Bind network card)"
+    EY " 3.清除密码并重启(Clear password)"
+    EY " 4.重置网络和主题设置(Reset network and theme set)"
+    EY " 5.重启关机(Reboot/Shutdown)"
+    EY " 6.重置系统(Reset System)   7.网络检查(Check Network)"
+    EY " 8.释放内存(Free Memory)    9.其它功能(Other functions)"
+
+    EW " 0/q. 退出菜单(Exit Menu)\n"
+
+    while :; do
+        read -p " 输入编号(Enter number)[0-9]: " CHOOSE
+        case $CHOOSE in
+            1) k_change_ip ;;
+            2) k_bindlanwan ;;
+            3) k_clear ;;
+            4) k_themenetwork ;;
+            5) k_rebootpoweroff ;;
+            6) k_firstboot ;;
+            7) check_network ;;
+            8) free_memory ;;
+            9) otherpro ;; 
+            0|Q|q) goexit ;;
+            *) 
+	         pwait
+	        . /etc/profiles  ;;
+        esac
+    done
+}
+
+mainmenu
+
